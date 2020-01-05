@@ -24,6 +24,10 @@ import io  #StringIO模块就是在内存中读写str
 #import urllib3
 # 1. 导入Python SSL处理模块
 import ssl
+import jieba
+
+from selenium import webdriver
+from selenium.webdriver.support.select import Select
  
 # 2. 表示忽略未经核实的SSL证书认证
 context = ssl._create_unverified_context()
@@ -34,9 +38,18 @@ request = urllib.request.Request(url, headers = headers)
 # 3. 在urlopen()方法里 指明添加 context 参数
 response = urllib.request.urlopen(request, context = context)
 html = str( response.read(), encoding = "utf8") 
-buf = io.StringIO(html) #将读取的response信息作为stringIO方便后面作为文件写入
-f = gzip.GzipFile(fileobj=buf)  #解压缩response
-data = f.read() 
-print(data)
- 
-print(s)
+#buf = io.StringIO(html) #将读取的response信息作为stringIO方便后面作为文件写入
+#f = gzip.GzipFile(fileobj=buf)  #解压缩response
+#data = f.read() 
+print(html)
+fs=open("a6686715613953393159.txt","w",encoding="utf-8")
+res=jieba.cut(html)
+fs.write("|".join(res))
+fs.close()
+
+url="https://www.toutiao.com/a6736853970507006472/"
+webDriver = webdriver.Chrome();
+webDriver.get(url)
+webDriver.execute_script('document.querySelector(".tb-link").click()')
+print(webDriver.page_source)
+#print(s)
