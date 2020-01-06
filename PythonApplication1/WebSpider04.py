@@ -31,7 +31,7 @@ chrome.get(url)
 #print(chrome.page_source)
 linkBtn = chrome.find_element_by_link_text("下一页")
 clsVal = linkBtn.get_attribute('class')
-pageIndex=1
+pageIndex=0
 while clsVal!="nolink":
     fs=open("%s/实时资金流向排行-%s-%s.txt"%(path,timeTag,pageIndex),"w",encoding="utf-8") 
     fs.write(chrome.page_source)
@@ -92,12 +92,12 @@ while clsVal!="nolink":
         index+=1
 
     chrome.switch_to_window(chrome.window_handles[0]) 
-    chrome.execute_script("arguments[0].scrollIntoView(false);",linkBtn)
     linkBtn = chrome.find_element_by_link_text("下一页")
+    chrome.execute_script("arguments[0].scrollIntoView(false);",linkBtn)
     clsVal = linkBtn.get_attribute('class')
     linkBtn.click()
     pageIndex+=1
     print(pageIndex)
 
-    time.sleep(random.uniform(1,2))
+    time.sleep(random.uniform(10,20))
 print("OK")
