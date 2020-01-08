@@ -55,13 +55,13 @@ while clsVal!="nolink":
             detail=chrome.find_element_by_id("dt_1").find_elements_by_link_text("详情")[index]
             detail.click()
             chrome.switch_to_window(chrome.window_handles[1])
-            fs=open("%s/%s-%s.txt"%(path,chrome.title,timeTag),"w",encoding="utf-8") 
+            fs=open("%s/%s-%s.txt"%(path,chrome.title.replace("*","@"),timeTag),"w",encoding="utf-8") 
             fs.write(chrome.page_source)
             fs.close()
-            print(chrome.title)
+            print(chrome.title.replace("*","@"))
             chrome.close();
             chrome.switch_to_window(chrome.window_handles[0])
-            print(chrome.title)
+            print(chrome.title.replace("*","@"))
             time.sleep(random.uniform(1,2))
         index+=1
 
@@ -81,13 +81,13 @@ while clsVal!="nolink":
             data=chrome.find_element_by_id("dt_1").find_elements_by_link_text("数据")[index]
             data.click()
             chrome.switch_to_window(chrome.window_handles[1])
-            fs=open("%s/%s-%s.txt"%(path,chrome.title,timeTag),"w",encoding="utf-8") 
+            fs=open("%s/%s-%s.txt"%(path,chrome.title.replace("*","@"),timeTag),"w",encoding="utf-8") 
             fs.write(chrome.page_source)
             fs.close()
-            print(chrome.title)
+            print(chrome.title.replace("*","@"))
             chrome.close();
             chrome.switch_to_window(chrome.window_handles[0])
-            print(chrome.title)
+            print(chrome.title.replace("*","@"))
             time.sleep(random.uniform(1,2))
         index+=1
 
