@@ -35,13 +35,20 @@ for root, dirs,files in os.walk("D:\Desktop"):
         elif  (re.match("^.*股票_数据_资料_信息.*\.txt$",file)):
             print(file)
             soup2 = BeautifulSoup(open(path,"r",encoding="utf-8")) 
-            hxtcArr = soup2.find(id="m_hxtc").select('.content p')
+            hxtcArr = soup2.select('#m_hxtc .content p')
             for hxtc in hxtcArr:
                 title=hxtc.select("b")[0].text
                 val= hxtc.text
                 item={"Title":title,"Value":val}
                 #print(item)
-                m_cwzy_valArr = soup2.select_one("#m_cwzy tbody tr")
-                for m_cwzy in m_cwzy_valArr:
-                    print(m_cwzy)
+                #m_cwzy_valArr = soup2.select_one("#m_cwzy tbody tr")
+                #for m_cwzy in m_cwzy_valArr:
+                #    print(m_cwzy)
+            m_zdgz_TitleArr = soup2.select("#zdgzContent .itemtitle")
+            for m_zdgz_title in m_zdgz_TitleArr:
+                print(m_zdgz_title.text)
+            重点关注类型={""}
+            m_zdgz_ItemArr = soup2.select("#zdgzContent .item")
+            for m_zdgz_item in m_zdgz_ItemArr:
+                print(m_zdgz_item.text)
 print('全部结束')
