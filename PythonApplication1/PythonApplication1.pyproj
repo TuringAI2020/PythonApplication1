@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>HtmlParse2.py</StartupFile>
+    <StartupFile>py03.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HtmlParse2.py" />
+    <Compile Include="py01.py" />
+    <Compile Include="py02.py" />
+    <Compile Include="py03.py" />
+    <Compile Include="py04.py" />
+    <Compile Include="py05.py" />
     <Compile Include="WebSpider04.py" />
     <Compile Include="PythonApplication1.py" />
     <Compile Include="WebSpider02.py" />
