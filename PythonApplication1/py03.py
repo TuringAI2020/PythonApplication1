@@ -74,8 +74,11 @@ class HtmlConvertor:
             if(maxVal<parentRef[k]):
                 maxVal=parentRef[k]
                 selectIndex=k
-        container=pArr[selectIndex].parent
-        article=container.text 
+
+        article=""
+        if -1!=selectIndex:
+            container=pArr[selectIndex].parent
+            article=container.text 
         return article   
         pass
     def __FindSection(self,selector):

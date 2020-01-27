@@ -38,6 +38,7 @@ class ChromeSpider:
             self.url = None
             #self.chrome.quit();
         finally:
+            #self.chrome.close();
             return self
         pass
 
@@ -55,6 +56,6 @@ def callback(input):
      return output
      pass
 
-spider = ChromeSpider()
-spider.LoadWeb("http://data.eastmoney.com/zjlx/603501.html").SaveDataToRedis(callback=callback)
-print("OK")
+#spider = ChromeSpider()
+#spider.LoadWeb("http://data.eastmoney.com/zjlx/603501.html").SaveDataToRedis(callback=callback)
+#print("OK")

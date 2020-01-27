@@ -52,7 +52,7 @@ class RClient:
         r=self.__GetDB(0)
         jsonStr= ""
         if type(jsonVal) == type({}):
-            jsonStr = json.dumps(jsonVal)
+            jsonStr = json.dumps(jsonVal , ensure_ascii=False)
         elif type(jsonVal) == type(""):
             jsonStr=jsonVal
         if(0<len(jsonStr)):            
