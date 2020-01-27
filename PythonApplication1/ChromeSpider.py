@@ -42,19 +42,7 @@ class ChromeSpider:
             return self
         pass
 
-def callback(input):
-     output = input
-     title = input["Title"]
-     name = title.split('(')[0]
-     code = title.split('(')[1].split(')')[0]
-     dateTag =time.strftime("%Y%m%d", time.localtime())
-     pageTag = title.split('(')[1].split(')')[1].split(" ")[0].strip()
-     output["Name"]=name
-     output["Code"]=code
-     output["DateTag"]=dateTag
-     output["PageTag"]=pageTag
-     return output
-     pass
+
 
 #spider = ChromeSpider()
 #spider.LoadWeb("http://data.eastmoney.com/zjlx/603501.html").SaveDataToRedis(callback=callback)
