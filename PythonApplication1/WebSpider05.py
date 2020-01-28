@@ -16,20 +16,28 @@ import jieba
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from ChromeSpider import ChromeSpider
+from CHECKER import CHECKER
+from RClient import RClient
 
 def callback(input):
      output = input
      title = input["Title"]
-     name = title.split('(')[0]
-     code = title.split('(')[1].split(')')[0]
-     dateTag =time.strftime("%Y%m%d", time.localtime())
-     pageTag = title.split('(')[1].split(')')[1].split(" ")[0].strip()
-     output["Name"]=name
-     output["Code"]=code
-     output["DateTag"]=dateTag
-     output["PageTag"]=pageTag
-     return output
-     pass
+     if True == CHECKER.HasHanZi(title):
+         name = title.split('(')[0]
+         code = title.split('(')[1].split(')')[0]
+         dateTag = time.strftime("%Y%m%d", time.localtime())
+         pageTag = title.split('(')[1].split(')')[1].split(" ")[0].strip()
+         output["Name"] = name
+         output["Code"] = code
+         output["DateTag"] = dateTag
+         output["PageTag"] = pageTag
+         return output
+     else:
+         qName="FailDownload"
+         RClient.GetInst().QueueEn(qName,input)
+         return None
+
+         pass
 
 chrome = webdriver.Chrome()
 spider = ChromeSpider()

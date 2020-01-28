@@ -24,6 +24,7 @@
     <Compile Include="HtmlParse2.py" />
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
+    <Compile Include="CHECKER.py" />
     <Compile Include="RClient.py" />
     <Compile Include="py01.py" />
     <Compile Include="py02.py" />

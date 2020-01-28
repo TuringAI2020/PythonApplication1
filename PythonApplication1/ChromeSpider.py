@@ -20,10 +20,13 @@ class ChromeSpider:
         data = json.loads(jsonStr)
         data["Uri"] = self.url
         data=callback(data) 
-        pageTag=data["PageTag"]
-        qName = "PreProcTask:%s"%pageTag 
-        RClient.GetInst().QueueEn(qName,data)
-        print("已保存%s\t%s"%(data["Name"],data["Code"]))
+        if None != data:
+            pageTag=data["PageTag"]
+            qName = "PreProcTask:%s"%pageTag 
+            RClient.GetInst().QueueEn(qName,data)
+            print("已保存%s\t%s"%(data["Name"],data["Code"]))
+        else:
+            print("下载失败%s"%data["Uri"])
         pass
     def __init__(self):
         self.chrome = webdriver.Chrome()     # 创建Chrome对象
