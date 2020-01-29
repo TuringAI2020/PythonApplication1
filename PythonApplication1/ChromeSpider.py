@@ -4,6 +4,7 @@ from py03 import HtmlConvertor
 from RClient import RClient
 import json
 import time
+from selenium.webdriver.chrome.options import Options
 
 class ChromeSpider:
     chrome = None
@@ -26,10 +27,15 @@ class ChromeSpider:
             RClient.GetInst().QueueEn(qName,data)
             print("已保存%s\t%s"%(data["Name"],data["Code"]))
         else:
-            print("下载失败%s"%data["Uri"])
+            print("下载失败%s"%self.url)
+            time.sleep(60)
         pass
     def __init__(self):
-        self.chrome = webdriver.Chrome()     # 创建Chrome对象
+        chrome_opt = Options()      # 创建参数设置对象.
+        chrome_opt.add_argument('--headless')   # 无界面化.
+        chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
+        chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
+        self.chrome = webdriver.Chrome(chrome_options=chrome_opt)     # 创建Chrome对象
     def LoadWeb(self,url):
         try:
             self.chrome.get(url)     # get .

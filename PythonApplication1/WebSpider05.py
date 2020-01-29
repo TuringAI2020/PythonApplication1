@@ -15,6 +15,7 @@ import jieba
 
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.chrome.options import Options
 from ChromeSpider import ChromeSpider
 from CHECKER import CHECKER
 from RClient import RClient
@@ -39,16 +40,14 @@ def callback(input):
 
          pass
 
-chrome = webdriver.Chrome()
+chrome_opt = Options()      # 创建参数设置对象.
+chrome_opt.add_argument('--headless')   # 无界面化.
+chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
+chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
+chrome = webdriver.Chrome( chrome_options=chrome_opt)
 spider = ChromeSpider()
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
-#检测文件夹的存在
-path = "gupiao"
-if False == os.path.exists(path) :
-    os.mkdir(path)
-path = "%s/%s" % (path,timeTag)
-if False == os.path.exists(path) :
-    os.mkdir(path)
+ 
 
 url = "http://data.eastmoney.com/zjlx/detail.html"
 

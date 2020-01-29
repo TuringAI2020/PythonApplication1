@@ -6,4 +6,17 @@ class CHECKER:
         res =  reg.search(input)
         return None!=res
         pass
+
+    @staticmethod
+    def Contains(input,word):
+        res = re.search("%s+"%word,input.strip()) 
+        return None!=res
+        pass
+
+    @staticmethod
+    def EndWith(input,word):
+        res = re.search("%s$"%word,input.strip()) 
+        return None!=res
+        pass
     pass
+ 

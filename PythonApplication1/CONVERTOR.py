@@ -12,7 +12,7 @@ class CONVERT:
         return val
         pass
     @staticmethod
-    def CodeToFloat(input):
+    def StrToFloat(input):
         val =  float(input)
         return val
         pass
