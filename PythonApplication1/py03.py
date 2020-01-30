@@ -99,19 +99,22 @@ class HtmlConvertor:
         pass
     def ConvertToJson(self):
         self.__soup = BeautifulSoup(self.__pageSource,features="html5lib")
-        title=self.__soup.title.text
-        tables=self.__soup.select("table")
-        links=self.__soup.select("a[href]")
-        links = self.__FindLinks(links)
-        tables = self.__FindTables(tables)
-        article=self.__FindArticle(selector="p")
-        self.__pageData["Uri"]=self.__uri
-        self.__pageData["Title"]=title
-        self.__pageData["Links"]=links
-        self.__pageData["Tables"]=tables
-        self.__pageData["Article"]=article
-        jsonStr = json.dumps(self.__pageData, ensure_ascii=False) 
-        return jsonStr 
+        if None != self.__soup.title:
+            title=self.__soup.title.text
+            tables=self.__soup.select("table")
+            links=self.__soup.select("a[href]")
+            links = self.__FindLinks(links)
+            tables = self.__FindTables(tables)
+            article=self.__FindArticle(selector="p")
+            self.__pageData["Uri"]=self.__uri
+            self.__pageData["Title"]=title
+            self.__pageData["Links"]=links
+            self.__pageData["Tables"]=tables
+            self.__pageData["Article"]=article
+            jsonStr = json.dumps(self.__pageData, ensure_ascii=False) 
+            return jsonStr 
+        else:
+            return None
     pass
      
 #res = HtmlConvertor.GetInst().LoadFromFile(r"D:\007\t7.txt").ConvertToJson()

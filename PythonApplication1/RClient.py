@@ -64,6 +64,11 @@ class RClient:
         val = r.lpop(qName)
         return val
         pass    
+    def Count(self,qName):
+        r=self.__GetDB(0)          
+        val = r.llen(qName)
+        return val
+        pass    
     def ProcQueue(self,qName,callback):
         r = self.__GetDB(0)
         length = r.llen(qName)
