@@ -18,5 +18,11 @@ class CHECKER:
         res = re.search("%s$"%word,input.strip()) 
         return None!=res
         pass
+    @staticmethod
+    def IsNumber(input):
+        reg = re.compile("^\d+.*\d*$")  #检查中文)
+        res =  reg.search(input.strip())
+        return None!=res
+        pass
     pass
- 
+  

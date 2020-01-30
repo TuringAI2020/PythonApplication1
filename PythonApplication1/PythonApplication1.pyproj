@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider06.py</StartupFile>
+    <StartupFile>QueueProcessor融资融券.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +25,11 @@
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
     <Compile Include="CHECKER.py" />
-    <Compile Include="QueueProcessor01.py">
+    <Compile Include="QueueProcessor融资融券.py" />
+    <Compile Include="QueueProcessor核心题材.py" />
+    <Compile Include="QueueProcessor公告大全.py" />
+    <Compile Include="QueueProcessor机构调研.py" />
+    <Compile Include="QueueProcessor资金流向全览.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RClient.py" />

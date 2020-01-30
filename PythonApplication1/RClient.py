@@ -32,8 +32,12 @@ class RClient:
 
     def SortDictSave(self,dictName,jsonVal,sort): 
         r = redis.Redis(connection_pool=self.pool ,db=0)
-        jsonStr=json.dumps(jsonVal ,ensure_ascii=False) 
-        r.zadd(dictName, {jsonVal:sort})
+        jsonStr=""
+        if type(jsonVal) == type({}):
+            jsonStr = json.dumps(jsonVal , ensure_ascii=False)
+        elif type(jsonVal) == type(""):
+            jsonStr=jsonVal 
+        r.zadd(dictName, {jsonStr:sort})
         pass    
 
     def SortDictSaveArray(self,dictName,dataDict):
@@ -47,7 +51,14 @@ class RClient:
         keys = r.scan(0,pattern,10000)
         return keys
         pass
-
+    def DeleteKeys(self,pattern):
+        r=self.__GetDB(0)
+        keys = r.scan(0,pattern,10000)
+        for key in keys[1]:
+            r.delete(key)
+            print("Delete %s"%key)
+        return keys
+        pass
     def QueueEn(self,qName,jsonVal):
         r=self.__GetDB(0)
         jsonStr= ""
@@ -69,6 +80,16 @@ class RClient:
         val = r.llen(qName)
         return val
         pass    
+    def TraverseQueue(self,qName,callback):
+        r = self.__GetDB(0)
+        length = r.llen(qName)
+        index=0
+        while index<length:
+            item  = r.lindex(qName,index=index)
+            callback(qName,item)
+            index+=1
+            #length = r.llen(qName)
+        pass
     def ProcQueue(self,qName,callback):
         r = self.__GetDB(0)
         length = r.llen(qName)

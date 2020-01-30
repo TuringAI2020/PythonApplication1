@@ -84,14 +84,15 @@ def DownloadAllCode():
                     #http://data.eastmoney.com/gdhs/detail/300073.html #股东户数
                     #http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=SZ300073 #股东研究
                     #http://data.eastmoney.com/zlsj/detail/300073.html #主力持仓
-                    #http://data.eastmoney.com/jgdy/gsjsdy/300073.html #机构调研
+                    #http://data.eastmoney.com/jgdy/gsjsdy/300073.html #机构调研 OK
                     #http://data.eastmoney.com/bgcz/detail/300073.html #并购重组
-                    #http://data.eastmoney.com/notices/stock/300073.html #公告大全
+                    #http://data.eastmoney.com/notices/stock/300073.html #公告大全 OK
                     #http://data.eastmoney.com/dzjy/detail/300073.html #大宗交易
                     #http://data.eastmoney.com/stockcomment/300073.html #千股千评
                     #http://data.eastmoney.com/stock/lhb/lcsb/300073.html #龙虎榜单 历次上榜
-                    #http://data.eastmoney.com/rzrq/detail/300073.html #融资融券
-                    #http://f10.eastmoney.com/f10_v2/CoreConception.aspx?code=SZ300073 #核心题材 
+                    #http://data.eastmoney.com/rzrq/detail/300073.html #融资融券 OK
+                    #http://f10.eastmoney.com/f10_v2/CoreConception.aspx?code=SZ300073 #核心题材 OK
+                    #http://data.eastmoney.com/zjlx/002050.html #资金流向
 
                     hrefArr=[
                         {"PageTag":"综合信息","Url":"http://data.eastmoney.com/stockdata/%s.html"%code,"Name":name,"Code":code,"Code2":code2}
@@ -111,6 +112,7 @@ def DownloadAllCode():
                        ,{"PageTag":"龙虎榜单历次上榜","Url":"http://data.eastmoney.com/stock/lhb/lcsb/%s.html"%code,"Name":name,"Code":code,"Code2":code2}  
                        ,{"PageTag":"融资融券","Url":"http://data.eastmoney.com/rzrq/detail/%s.html"%code,"Name":name,"Code":code,"Code2":code2}  
                        ,{"PageTag":"核心题材","Url":"http://f10.eastmoney.com/f10_v2/CoreConception.aspx?code=%s"%code2,"Name":name,"Code":code,"Code2":code2}  
+                       ,{"PageTag":"资金流向","Url":"http://data.eastmoney.com/zjlx/%s.html"%code,"Name":name,"Code":code,"Code2":code2}  
                         ]
                     for href in hrefArr:
                         qName="股票:待下载页面队列"
