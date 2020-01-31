@@ -78,16 +78,16 @@ def DownloadAllCode():
                     #http://data.eastmoney.com/stockdata/300073.html #综合信息
                     #http://f10.eastmoney.com/f10_v2/BusinessAnalysis.aspx?code=SZ300073 #经营分析
                     #http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=SZ300073 #新财务分析
-                    #http://data.eastmoney.com/executive/300073.html #高管持股
-                    #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持 日期不足取title
+                    #http://data.eastmoney.com/executive/300073.html #高管持股 OK
+                    #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持 日期不足取title OK
                     #http://data.eastmoney.com/dxf/q/300073.html #限售解禁
                     #http://data.eastmoney.com/gdhs/detail/300073.html #股东户数 OK
                     #http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=SZ300073 #股东研究
-                    #http://data.eastmoney.com/zlsj/detail/300073.html #主力持仓
+                    #http://data.eastmoney.com/zlsj/detail/300073.html #主力持仓 OK
                     #http://data.eastmoney.com/jgdy/gsjsdy/300073.html #机构调研 OK
                     #http://data.eastmoney.com/bgcz/detail/300073.html #并购重组
                     #http://data.eastmoney.com/notices/stock/300073.html #公告大全 OK
-                    #http://data.eastmoney.com/dzjy/detail/300073.html #大宗交易
+                    #http://data.eastmoney.com/dzjy/detail/300073.html #大宗交易 OK
                     #http://data.eastmoney.com/stockcomment/300073.html #千股千评
                     #http://data.eastmoney.com/stock/lhb/lcsb/300073.html #龙虎榜单 历次上榜
                     #http://data.eastmoney.com/rzrq/detail/300073.html #融资融券 OK

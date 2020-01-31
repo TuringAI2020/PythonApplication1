@@ -1,3 +1,4 @@
+import time
 from CHECKER import CHECKER
 
 class CONVERT:
@@ -45,4 +46,11 @@ class CONVERT:
         else:
             input = CONVERT.StrToFloat(input)/10000.0
         return input
+        pass
+
+    @staticmethod
+    def GetCurrentDateTag():
+        timeTag = time.strftime("%Y-%m-%d", time.localtime())
+        dateTag = CONVERT.DateToInt(timeTag)
+        return dateTag
         pass
