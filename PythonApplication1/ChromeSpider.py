@@ -30,10 +30,10 @@ class ChromeSpider:
                 print("已保存%s\t%s"%(data["Name"],data["Code"]))
             else:
                 print("下载失败%s"%self.url)
-                time.sleep(60)
+                time.sleep(120)
         else: 
             print("下载失败%s"%self.url)
-            time.sleep(60)
+            time.sleep(120)
         pass
     def __init__(self):
         chrome_opt = Options()      # 创建参数设置对象.
@@ -60,5 +60,5 @@ class ChromeSpider:
 
 
 #spider = ChromeSpider()
-#spider.LoadWeb("http://data.eastmoney.com/zjlx/603501.html").SaveDataToRedis(callback=callback)
-#print("OK")
+#spider.LoadWeb("http://data.eastmoney.com/dxf/q/600118.html").GetDataFromWeb()
+##print("OK")
