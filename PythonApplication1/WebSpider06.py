@@ -79,9 +79,9 @@ def DownloadAllCode():
                     #http://f10.eastmoney.com/f10_v2/BusinessAnalysis.aspx?code=SZ300073 #经营分析
                     #http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=SZ300073 #新财务分析
                     #http://data.eastmoney.com/executive/300073.html #高管持股
-                    #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持
+                    #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持 日期不足取title
                     #http://data.eastmoney.com/dxf/q/300073.html #限售解禁
-                    #http://data.eastmoney.com/gdhs/detail/300073.html #股东户数
+                    #http://data.eastmoney.com/gdhs/detail/300073.html #股东户数 OK
                     #http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=SZ300073 #股东研究
                     #http://data.eastmoney.com/zlsj/detail/300073.html #主力持仓
                     #http://data.eastmoney.com/jgdy/gsjsdy/300073.html #机构调研 OK

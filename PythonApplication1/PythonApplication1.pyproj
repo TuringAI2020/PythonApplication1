@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>QueueProcessor融资融券.py</StartupFile>
+    <StartupFile>QueueProcessor股东增减持.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,8 @@
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
     <Compile Include="CHECKER.py" />
+    <Compile Include="QueueProcessor股东增减持.py" />
+    <Compile Include="QueueProcessor股东户数.py" />
     <Compile Include="QueueProcessor融资融券.py" />
     <Compile Include="QueueProcessor核心题材.py" />
     <Compile Include="QueueProcessor公告大全.py" />

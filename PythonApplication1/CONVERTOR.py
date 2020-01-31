@@ -30,7 +30,7 @@ class CONVERT:
     @staticmethod
     def PercentStrToFloat(input):
         input = input.replace("%","")
-        val =  float(input)
+        val =  CONVERT.StrToFloat(input)
         return val
         pass
 
