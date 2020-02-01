@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>QueueProcessor限售解禁.py</StartupFile>
+    <StartupFile>QueueProcessor资金流向.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,7 @@
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
     <Compile Include="CHECKER.py" />
+    <Compile Include="QueueProcessor资金流向.py" />
     <Compile Include="QueueProcessor限售解禁.py" />
     <Compile Include="QueueProcessor主力持仓.py" />
     <Compile Include="QueueProcessor大宗交易.py" />

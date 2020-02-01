@@ -92,7 +92,7 @@ def DownloadAllCode():
                     #http://data.eastmoney.com/stock/lhb/lcsb/300073.html #龙虎榜单 历次上榜
                     #http://data.eastmoney.com/rzrq/detail/300073.html #融资融券 OK
                     #http://f10.eastmoney.com/f10_v2/CoreConception.aspx?code=SZ300073 #核心题材 OK
-                    #http://data.eastmoney.com/zjlx/002050.html #资金流向
+                    #http://data.eastmoney.com/zjlx/002050.html #资金流向 OK
 
                     hrefArr=[
                         {"PageTag":"综合信息","Url":"http://data.eastmoney.com/stockdata/%s.html"%code,"Name":name,"Code":code,"Code2":code2}
