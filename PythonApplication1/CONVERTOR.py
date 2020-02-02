@@ -37,6 +37,12 @@ class CONVERT:
 
     @staticmethod
     def UnitStrToFloat(input):
+
+        if True == CHECKER.EndWith(input,"%"):
+            output = CONVERT.PercentStrToFloat(input)
+            return output
+
+
         if True == CHECKER.EndWith(input,"万亿"):
             input = input.replace("万亿","")
             input = CONVERT.StrToFloat(input) * 10000 * 10000

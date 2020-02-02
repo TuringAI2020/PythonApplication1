@@ -24,5 +24,20 @@ class CHECKER:
         res =  reg.search(input.strip())
         return None!=res
         pass
+    @staticmethod
+    def IsDate(input):
+        reg1 = re.compile("^[0-9][0-9][-/][0-1][0-9][-/][0-3][0-9]$")  #检查中文) 19-09-19
+        res1 =  reg1.search(input.strip())
+        if None!=res1:
+            return True
+
+        reg2 = re.compile("^[2][0][0-9][0-9][-/][0-1][0-9][-/][0-3][0-9]$")  #检查中文) 19-09-19
+        res2 =  reg2.search(input.strip())
+        if None!=res2:
+            return True
+
+        return False
+        pass
+
     pass
   

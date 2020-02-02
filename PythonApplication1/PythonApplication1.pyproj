@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>QueueProcessor经营分析.py</StartupFile>
+    <StartupFile>QueueProcessor新财务分析.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,8 @@
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
     <Compile Include="CHECKER.py" />
+    <Compile Include="QueueProcessor股东研究.py" />
+    <Compile Include="QueueProcessor新财务分析.py" />
     <Compile Include="QueueProcessor经营分析.py" />
     <Compile Include="QueueProcessor并购重组.py" />
     <Compile Include="QueueProcessor资金流向.py" />

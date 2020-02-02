@@ -76,8 +76,8 @@ def DownloadAllCode():
                     else:
                         code2="SZ"+code
                     #http://data.eastmoney.com/stockdata/300073.html #综合信息
-                    #http://f10.eastmoney.com/f10_v2/BusinessAnalysis.aspx?code=SZ300073 #经营分析 主营范围 没能抓出来
-                    #http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=SZ300073 #新财务分析
+                    #http://f10.eastmoney.com/f10_v2/BusinessAnalysis.aspx?code=SZ300073 #经营分析 主营范围 没能抓出来 OK
+                    #http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=SZ300073 #新财务分析 百分比报表没取出来 OK
                     #http://data.eastmoney.com/executive/300073.html #高管持股 OK
                     #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持 日期不足取title OK
                     #http://data.eastmoney.com/dxf/q/300073.html #限售解禁
