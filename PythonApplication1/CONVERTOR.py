@@ -17,7 +17,7 @@ class CONVERT:
     @staticmethod
     def StrToFloat(input):
         if True == CHECKER.IsNumber(input):
-            val = float(input)
+            val = float(input.replace(",",""))
             return val
         else: 
             return 0.0

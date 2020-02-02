@@ -20,9 +20,17 @@ class CHECKER:
         pass
     @staticmethod
     def IsNumber(input):
-        reg = re.compile("^\d+.*\d*$")  #检查中文)
-        res =  reg.search(input.strip())
-        return None!=res
+        reg1 = re.compile("^\d+.*\d*$")  #检查中文)
+        res1 =  reg1.search(input.strip())
+        if None!=res1:
+            return True
+        
+        reg2= re.compile("^-*(\d{1,3},*)+.*\d+$")  #检查中文)
+        res2 =  reg2.search(input.strip())
+        if None!=res2:
+            return True
+
+        return False
         pass
     @staticmethod
     def IsDate(input):

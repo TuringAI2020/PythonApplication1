@@ -24,10 +24,20 @@ def CreateEmptyItemList(table):
         itemCount-=1
     return arr
 
+def IsTableHead(row): 
+      for item in row:
+           if True!=CHECKER.HasHanZi(item):
+               return False 
+      return True
+
 def FillItemList(table):
-     arr = CreateEmptyItemList(table)
      rows = table["body"]
-     
+     rows=rows[1:]
+     if 11 != len(rows[0]):
+        return None
+     table["body"]=rows
+     arr = CreateEmptyItemList(table)
+
      for row in rows:
          key = row[0]
          rowIndex = 1
@@ -35,15 +45,15 @@ def FillItemList(table):
              if True != CHECKER.IsDate(row[rowIndex]):
                  arr[rowIndex - 1][key] = CONVERT.UnitStrToFloat(row[rowIndex])
              else:
-                 if 8 == len( row[rowIndex]):
+                 if 11 == len(row[rowIndex]):
                     "20" + row[rowIndex] 
-                 arr[rowIndex - 1][key + "Tag"] = CONVERT.DateToInt("20" + row[rowIndex])
-                 arr[rowIndex - 1][key] = "20" + row[rowIndex] 
+                 arr[rowIndex - 1][key + "Tag"] = CONVERT.DateToInt(row[rowIndex])
+                 arr[rowIndex - 1][key] = row[rowIndex] 
+                 arr[rowIndex - 1]["DateTag"] = CONVERT.DateToInt(row[rowIndex])
                 
              rowIndex+=1
      return arr
 def callback(qName,input): 
-    #input = input.encode(encoding= "gbk").decode(encoding="utf-8")
     #print(input)
     data = json.loads(input)
     code = data["Code"].strip()
@@ -51,9 +61,24 @@ def callback(qName,input):
     tables = data["Tables"] 
 
     tables = data["Tables"]
-    for table in tables:  
-        itemList = FillItemList(table)
-        print(itemList)
+    if 0 == len(tables):
+        return None
+
+    itemList = FillItemList(tables[0])
+    if None!=itemList:
+        for item in itemList:
+                item["Code"] = code
+                item["Name"] = name
+                if "DateTag" in item:
+                    dateTag=item["DateTag"]
+                    dictName = "PreData:股票:%s:股东研究" % code
+                    #r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),日期Tag)
+                    item["较上期变化(%)"]=item["较上期变化(%)"]*10000
+                    item["股价(元)"]=item["股价(元)"]*10000
+                    item["前十大股东持股合计(%)"]=item["前十大股东持股合计(%)"]*10000
+                    item["前十大流通股东持股合计(%)"]=item["前十大流通股东持股合计(%)"]*10000
+                    print("%s %s"%(dateTag,item))
+      
     pass
-r.TraverseQueue("PreProcTask:新财务分析",callback)
+r.TraverseQueue("PreProcTask:股东研究",callback)
 print("OK")

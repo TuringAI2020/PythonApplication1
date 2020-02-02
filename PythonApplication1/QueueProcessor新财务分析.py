@@ -38,7 +38,7 @@ def FillItemList(table):
                  if 8 == len(row[rowIndex]):
                     "20" + row[rowIndex] 
                  arr[rowIndex - 1][key + "Tag"] = CONVERT.DateToInt(row[rowIndex])
-                 arr[rowIndex - 1][key] = "20" + row[rowIndex] 
+                 arr[rowIndex - 1][key] = row[rowIndex] 
                  arr[rowIndex - 1]["DateTag"] = CONVERT.DateToInt(row[rowIndex])
                 
              rowIndex+=1
