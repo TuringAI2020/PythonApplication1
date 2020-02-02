@@ -71,12 +71,14 @@ def callback(qName,input):
                 item["Name"] = name
                 if "DateTag" in item:
                     dateTag=item["DateTag"]
-                    dictName = "PreData:股票:%s:股东研究" % code
-                    #r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),日期Tag)
+
                     item["较上期变化(%)"]=item["较上期变化(%)"]*10000
                     item["股价(元)"]=item["股价(元)"]*10000
                     item["前十大股东持股合计(%)"]=item["前十大股东持股合计(%)"]*10000
                     item["前十大流通股东持股合计(%)"]=item["前十大流通股东持股合计(%)"]*10000
+                    
+                    dictName = "PreData:股票:%s:股东研究" % code
+                    r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),dateTag)
                     print("%s %s"%(dateTag,item))
       
     pass

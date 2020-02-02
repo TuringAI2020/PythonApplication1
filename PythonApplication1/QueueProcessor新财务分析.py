@@ -57,9 +57,10 @@ def callback(qName,input):
             item["Code"] = code
             item["Name"] = name
             if "DateTag" in item:
-                dateTag=item["DateTag"]
+                dateTag=item["DateTag"] 
+ 
                 dictName = "PreData:股票:%s:新财务分析" % code
-                #r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),日期Tag)
+                r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),dateTag)
                 print("%s %s"%(dateTag,item))
     pass
 r.TraverseQueue("PreProcTask:新财务分析",callback)
