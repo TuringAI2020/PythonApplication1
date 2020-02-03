@@ -75,12 +75,12 @@ class RClient:
 
     def QueryKeys(self,pattern):
         r = self.__GetDB(0)
-        keys = r.scan(0,pattern,10000)
+        keys = r.scan(0,pattern,1000000)
         return keys
         pass
     def DeleteKeys(self,pattern):
         r = self.__GetDB(0)
-        keys = r.scan(0,pattern,10000)
+        keys = r.scan(0,pattern,1000000)
         for key in keys[1]:
             r.delete(key)
             print("Delete %s" % key)

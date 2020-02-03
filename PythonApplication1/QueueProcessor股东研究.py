@@ -26,24 +26,26 @@ def CreateEmptyItemList(table):
 
 def IsTableHead(row): 
       for item in row:
-           if True!=CHECKER.HasHanZi(item):
+           if True != CHECKER.HasHanZi(item):
                return False 
       return True
 
 def FillItemList(table):
      rows = table["body"]
-     rows=rows[1:]
+     rows = rows[1:]
      if 11 != len(rows[0]):
         return None
-     table["body"]=rows
+     table["body"] = rows
      arr = CreateEmptyItemList(table)
 
      for row in rows:
          key = row[0]
          rowIndex = 1
          while rowIndex < len(arr):
-             if True != CHECKER.IsDate(row[rowIndex]):
+             if key != "筹码集中度" and True != CHECKER.IsDate(row[rowIndex]):
                  arr[rowIndex - 1][key] = CONVERT.UnitStrToFloat(row[rowIndex])
+             elif "筹码集中度" == key:
+                arr[rowIndex - 1][key] = row[rowIndex]
              else:
                  if 11 == len(row[rowIndex]):
                     "20" + row[rowIndex] 
@@ -65,22 +67,24 @@ def callback(qName,input):
         return None
 
     itemList = FillItemList(tables[0])
-    if None!=itemList:
+    if None != itemList:
         for item in itemList:
                 item["Code"] = code
                 item["Name"] = name
                 if "DateTag" in item:
-                    dateTag=item["DateTag"]
+                    dateTag = item["DateTag"]
 
-                    item["较上期变化(%)"]=item["较上期变化(%)"]*10000
-                    item["股价(元)"]=item["股价(元)"]*10000
-                    item["前十大股东持股合计(%)"]=item["前十大股东持股合计(%)"]*10000
-                    item["前十大流通股东持股合计(%)"]=item["前十大流通股东持股合计(%)"]*10000
-                    
+                    item["较上期变化(%)"] = item["较上期变化(%)"] * 10000
+                    item["股价(元)"] = item["股价(元)"] * 10000
+                    item["前十大股东持股合计(%)"] = item["前十大股东持股合计(%)"] * 10000
+                    item["前十大流通股东持股合计(%)"] = item["前十大流通股东持股合计(%)"] * 10000
+                    item["日期"]=item[""]
+                    del item[""]
                     dictName = "PreData:股票:%s:股东研究" % code
                     r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),dateTag)
-                    print("%s %s"%(dateTag,item))
+                    print("%s %s" % (dateTag,item))
       
     pass
+#r.DeleteKeys("PreData:股票:*:股东研究")
 r.TraverseQueue("PreProcTask:股东研究",callback)
 print("OK")
