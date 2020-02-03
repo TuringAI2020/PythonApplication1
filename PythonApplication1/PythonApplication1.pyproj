@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>QueueProcessor龙虎榜单.py</StartupFile>
+    <StartupFile>AnalysisProcessor核心题材.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnalysisProcessor核心题材.py" />
+    <Compile Include="AnalysisProcessor股票代码.py" />
     <Compile Include="HtmlParse2.py" />
     <Compile Include="CONVERTOR.py" />
     <Compile Include="ChromeSpider.py" />
@@ -29,6 +31,7 @@
     <Compile Include="QueueProcessor新财务分析.py" />
     <Compile Include="QueueProcessor经营分析.py" />
     <Compile Include="QueueProcessor并购重组.py" />
+    <Compile Include="AnalysisProcessor资金流向.py" />
     <Compile Include="QueueProcessor龙虎榜单.py" />
     <Compile Include="QueueProcessor资金流向.py" />
     <Compile Include="QueueProcessor限售解禁.py" />
