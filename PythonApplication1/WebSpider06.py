@@ -82,7 +82,7 @@ def DownloadAllCode():
                     #http://data.eastmoney.com/executive/gdzjc/300073.html #股东增减持 日期不足取title OK
                     #http://data.eastmoney.com/dxf/q/300073.html #限售解禁
                     #http://data.eastmoney.com/gdhs/detail/300073.html #股东户数 OK
-                    #http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=SZ300073 #股东研究
+                    #http://f10.eastmoney.com/f10_v2/ShareholderResearch.aspx?code=SZ300073 #股东研究 OK
                     #http://data.eastmoney.com/zlsj/detail/300073.html #主力持仓 OK
                     #http://data.eastmoney.com/jgdy/gsjsdy/300073.html #机构调研 OK
                     #http://data.eastmoney.com/bgcz/detail/300073.html #并购重组 OK
