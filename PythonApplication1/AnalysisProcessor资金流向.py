@@ -5,14 +5,20 @@ from CHECKER import CHECKER
 
 r=RClient.GetInst()
 
-def callback(qName,input): 
-    print("%s %s %s"%(qName,input[1],input[0]))
-    data=json.loads(input[0])
-    code = data["Code"].strip()
-    name = data["Name"].strip()
- 
+def callback(code):  
+    #print(code)
+    keyName = "PreData:股票:%s:资金流向"%code
+    arr=  r.SortDictGetMax(keyName)
+    if [] !=arr:
+        arr = sorted(arr,  key  = lambda  k:json.loads(k)["日期Tag"],reverse=True)
+        if 0<len(arr):
+            data =  json.loads(arr[0] ) 
+            code = data["Code"]
+            name = data["Name"]
+            #dateTag = data["DateTag"]
+            print(data)
     pass
-_keys  =r.QueryKeys("PreData:股票:*:资金流向")
-for key in _keys[1] :
-    r.TraverseSortedSet(key,callback)
+_keys  =r.DictKeys("AnalysisData:AllStockCode")
+for _key in _keys :
+    callback(_key)
 print("OK")
