@@ -57,5 +57,6 @@ def callback(qName,input):
             r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),股东户数统计截止日Tag)
             print(item)
     pass
+r.DeleteKeys("PreData:股票:*:股东户数")
 r.TraverseQueue("PreProcTask:股东户数",callback)
 print("OK")

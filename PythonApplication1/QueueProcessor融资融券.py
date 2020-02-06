@@ -59,5 +59,6 @@ def callback(qName,input):
             r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),交易日期Tag)
             print(item)
     pass
+r.DeleteKeys("PreData:股票:*:融资融券")
 r.TraverseQueue("PreProcTask:融资融券",callback)
 print("OK")
