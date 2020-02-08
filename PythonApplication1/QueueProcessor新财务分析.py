@@ -32,11 +32,11 @@ def FillItemList(table):
          key = row[0]
          rowIndex = 1
          while rowIndex < len(arr):
-             if True != CHECKER.IsDate(row[rowIndex]):
-                 arr[rowIndex - 1][key] = CONVERT.UnitStrToFloat(row[rowIndex])
+             if True != CHECKER.IsDate(row[rowIndex]): 
+                arr[rowIndex - 1][key] = CONVERT.UnitStrToFloat(row[rowIndex],unit=None)
              else:
                  if 8 == len(row[rowIndex]):
-                    "20" + row[rowIndex] 
+                     row[rowIndex] = "20" + row[rowIndex] 
                  arr[rowIndex - 1][key + "Tag"] = CONVERT.DateToInt(row[rowIndex])
                  arr[rowIndex - 1][key] = row[rowIndex] 
                  arr[rowIndex - 1]["DateTag"] = CONVERT.DateToInt(row[rowIndex])
@@ -63,5 +63,6 @@ def callback(qName,input):
                 r.SortDictSave(dictName,json.dumps(item,ensure_ascii=False),dateTag)
                 print("%s %s"%(dateTag,item))
     pass
+r.DeleteKeys("PreData:股票:*:新财务分析")
 r.TraverseQueue("PreProcTask:新财务分析",callback)
 print("OK")
