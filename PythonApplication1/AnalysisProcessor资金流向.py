@@ -35,9 +35,29 @@ def 连续N天主力净流出(arr,count=8):
     return find
     pass
 
+def 涨跌幅P1大于一半(arr,count=20):
+    currentDateTag = CONVERT.GetCurrentDateTag()
+    arr = sorted(arr,  key  = lambda  k:k["日期Tag"],reverse=True)
+    size = len(arr)
+    count = count if count<size else size
+    subArr = arr[:count]
+    subArr = list(filter(lambda k:k["日期Tag"]>=20191215,subArr)) #时间段要改进
+    if 0== len(subArr):
+        return False
+
+    subArr涨跌幅	=list(map(lambda x:x["涨跌幅"],subArr))
+    subArr涨幅绝对值大于P1小于P4 =list(filter(lambda x:abs(x["涨跌幅"])>1.0 and abs(x["涨跌幅"])<=4.0,subArr))
+    subArr涨幅绝对值大于P1小于P4中位数 = median(list(map(lambda x:x["涨跌幅"],subArr涨幅绝对值大于P1小于P4)))
+    if 0.7<=(len(subArr涨幅绝对值大于P1小于P4)/len(subArr涨跌幅)) and 0<subArr涨幅绝对值大于P1小于P4中位数:
+        return True
+    return False
+
+    pass
+
 def FindTarget(code,arr):
     arr = list(map(lambda x:json.loads(x),arr))
-    res = 连续N天主力净流出(arr) 
+    #res = 连续N天主力净流出(arr) 
+    res = 涨跌幅P1大于一半(arr)
     if True  == res:
         print("%s %s"%(arr[0]["Code"],arr[0]["Name"]))
     pass

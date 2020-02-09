@@ -138,7 +138,7 @@ def CallbackDownloadDetail(qName,item):
     spider.LoadWeb(href,data).SaveDataToRedis(callback) 
     qName="股票:待下载页面队列"
     itemCount = RClient.GetInst().Count(qName)
-    print("已下载 %d %s "%(itemCount,item))
+    print("剩余 %d %s "%(itemCount,item))
 
     pass
 def DownloadDetailPage():
