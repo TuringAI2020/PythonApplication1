@@ -7,7 +7,7 @@ from numpy import *
 
 r=RClient.GetInst()
 
-def 连续N天流入或流出的股(arr,dayCount=4):
+def 连续N天流入或流出的股(arr,dayCount=3):
     arr = sorted(arr,  key  = lambda  k:k["交易日期Tag"],reverse=True)
     size = len(arr)
     dayCount = dayCount if dayCount<size else size
@@ -16,15 +16,16 @@ def 连续N天流入或流出的股(arr,dayCount=4):
     subArr融资净买入中位数 = median(subArr融资净买入)
     find=True
     for item in subArr:
-        if item["融资净买入"]>0:
-            #print("%s %s %s"%(item["Code"],item["交易日期"],item["融资净买入"]))
-            find=find and False
-            break
+        if item["融资净买入"]>4000 and 6000<=subArr融资净买入中位数:
+            find=find and True
         elif  item["融资净买入"]==0: 
             find=find and False
             break
-        elif  item["融资净买入"]<0 and subArr融资净买入中位数<0: 
-            find=find and True
+        elif  item["融资净买入"]<0: 
+            find=find and False
+            break
+        else:
+            return False
     return find
     pass
 
@@ -34,32 +35,7 @@ def FindTarget(code,arr):
     if True  == res:
         print("%s %s"%(arr[0]["Code"],arr[0]["Name"]))
     pass
-
-def AnalysisList1(arr,startIndex=0,size=20):
-    arr = list(map(lambda x:json.loads(x),arr))
-    arr = sorted(arr,  key  = lambda  k:k["交易日期Tag"],reverse=True)
-    size = len(arr)
-    step3=3
-    step5=5
-    step10=10
-    cur=0
-    while cur<size: 
-        section3= arr[cur:cur+step3 if cur+step3<size else -1]
-        section3融资余额占流通市值比=list(map(lambda x:x["融资余额占流通市值比"],section3))
-        section3融资余额占流通市值比中位数 = median(section3融资余额占流通市值比)
-
-        section5= arr[cur:cur+step5 if cur+step5<size else -1]
-        section5融资余额占流通市值比=list(map(lambda x:x["融资余额占流通市值比"],section5))
-        section5融资余额占流通市值比中位数 = median(section5融资余额占流通市值比)
-
-        section10= arr[cur:cur+step10 if cur+step10<size else -1]
-        section10融资余额占流通市值比=list(map(lambda x:x["融资余额占流通市值比"],section10))
-        section10融资余额占流通市值比中位数 = median(section10融资余额占流通市值比)
-        
-        cur+=1
-    pass
-
-
+ 
 
 def callback(code):  
     #print(code)

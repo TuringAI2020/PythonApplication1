@@ -25,7 +25,7 @@ def 最新盈利能力指标(arr,count=3):
     find=True and 0<len(subArr)
     for item in subArr:
         #print("%s %s %s"%(arr[0]["Code"],arr[0]["Name"],item["股东户数增减比例"]))
-        if 8<item["加权净资产收益率(%)"] and 8<subArr加权净资产收益率中位数 and 1<=item["每股经营现金流(元)"] and item["资产负债率(%)"]<=50: 
+        if 6<item["加权净资产收益率(%)"]  and 0.5<=item["每股经营现金流(元)"] and item["资产负债率(%)"]<=50: 
             find=find and True
         elif  item["加权净资产收益率(%)"]==0: 
             find=find and False

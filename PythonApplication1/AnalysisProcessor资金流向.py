@@ -48,7 +48,7 @@ def 涨跌幅P1大于一半(arr,count=20):
     subArr涨跌幅	=list(map(lambda x:x["涨跌幅"],subArr))
     subArr涨幅绝对值大于P1小于P4 =list(filter(lambda x:abs(x["涨跌幅"])>1.0 and abs(x["涨跌幅"])<=4.0,subArr))
     subArr涨幅绝对值大于P1小于P4中位数 = median(list(map(lambda x:x["涨跌幅"],subArr涨幅绝对值大于P1小于P4)))
-    if 0.7<=(len(subArr涨幅绝对值大于P1小于P4)/len(subArr涨跌幅)) and 0<subArr涨幅绝对值大于P1小于P4中位数:
+    if 0.7<=(len(subArr涨幅绝对值大于P1小于P4)/len(subArr涨跌幅)) and 0<subArr涨幅绝对值大于P1小于P4中位数 and subArr涨幅绝对值大于P1小于P4中位数<0.2:
         return True
     return False
 
