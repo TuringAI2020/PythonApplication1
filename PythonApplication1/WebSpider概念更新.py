@@ -43,13 +43,13 @@ spider = ChromeSpider()
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
  
 def DownloadAllCode(): 
-    url = "http://quote.eastmoney.com/center/gridlist.html#hs_a_board"#沪深A股
+    url = "http://quote.eastmoney.com/center/boardlist.html#concept_board"#概念板块
 
     chrome.get(url)  
     linkBtn = chrome.find_element_by_link_text("下一页")
     clsVal = linkBtn.get_attribute('class')
     pageIndex = 0
-    while clsVal != "disabled": 
+    while CHECKER.Contains(clsVal,"disabled"):  
         chrome.switch_to_window(chrome.window_handles[0]) 
         linkBtn = chrome.find_element_by_link_text("下一页")
         chrome.execute_script("arguments[0].scrollIntoView(false);",linkBtn)
@@ -60,11 +60,9 @@ def DownloadAllCode():
         if ("Tables" in jsonData and []!=jsonData["Tables"]):
             rows = jsonData["Tables"][0]["body"]
             for row in rows:
-                code=row[1]
-                name=row[2]
-                if (6 == len(code) and 0<len(name)):
-                    RClient.GetInst().DictSave("Stock:BaseData:AllCode",code,name.replace("*","@"))
-                    print("%s %s"%(code,name))
+                conception=row[1].strip()
+                RClient.GetInst().SetSave("Stock:BaseData:AllConception",conception.replace("*","@"))
+                print("%s"%conception)
             print("页码 %d"%pageIndex) 
         else:
             print("%d 页数据未能加载"%pageIndex)
