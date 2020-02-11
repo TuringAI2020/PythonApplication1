@@ -26,6 +26,11 @@ class CHECKER:
         return None!=res
         pass
     @staticmethod
+    def StartWith(input,word):
+        res = re.search("^%s"%word,input.strip()) 
+        return None!=res
+        pass
+    @staticmethod
     def IsNumber(input):
         reg1 = re.compile("^\d+.*\d*$")  #检查中文)
         res1 =  reg1.search(input.strip())
