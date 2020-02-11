@@ -57,7 +57,8 @@ class ChromeSpider:
             return self
         pass
 
-
+    def Quit(self):
+        self.chrome.quit()
 
 #spider = ChromeSpider()
 #spider.LoadWeb("http://data.eastmoney.com/dxf/q/600118.html").GetDataFromWeb()

@@ -117,6 +117,18 @@ class RClient:
             index+=1
             #length = r.llen(qName)
         pass
+    def TraverseDict(self,qName,callback,match=None):
+        r = self.__GetDB(0)
+        length = r.hlen(qName)
+        pageIndex = 0
+        count=1000
+        pageCount=1+(length/count) if 0!=length%count else length/count
+        while pageIndex < pageCount:
+            arr = r.hscan(qName,cursor=pageIndex,match=match,count=count)
+            for item in arr[1]:
+                callback(qName,item)
+            pageIndex+=1 
+        pass
     def TraverseSortedSet(self,qName,callback):
         r = self.__GetDB(0)
         arr = r.zrevrangebyscore(qName,max=sys.maxsize,min=  0,withscores=True)
