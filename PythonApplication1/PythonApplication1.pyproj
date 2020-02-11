@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider核心题材更新.py</StartupFile>
+    <StartupFile>WebSpider新财务分析更新.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -61,6 +61,7 @@
     <Compile Include="py03.py" />
     <Compile Include="py04.py" />
     <Compile Include="py05.py" />
+    <Compile Include="WebSpider新财务分析更新.py" />
     <Compile Include="WebSpider核心题材更新.py" />
     <Compile Include="WebSpider概念更新.py" />
     <Compile Include="WebSpider股票代码更新.py" />

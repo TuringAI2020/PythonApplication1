@@ -65,7 +65,7 @@ def 核心题材数据更新回调函数(dictName,code):
                     print("保存核心题材 %s %s"%(code,word))
                     pass
             if  True == CHECKER.Contains(words[0],"要点"):
-                r.DictSave("Stock:Detail:%s"%code,words[1].strip(),section)
+                r.DictSave("Stock:Detail:%s"%code,"核心题材:"+words[1].strip(),section)
                 print("保存核心题材 %s %s"%(code,words[1]))
                 pass
     #    time.sleep(random.uniform(2,4))
