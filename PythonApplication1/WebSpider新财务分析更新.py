@@ -84,24 +84,48 @@ chrome = webdriver.Chrome( chrome_options=chrome_opt)
 spider = ChromeSpider()
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
  
-def 新财务分析数据更新回调函数(dictName,code): 
+def CreateTask(dictName,code):
     code2="SH"+code if code[0]=="6" else "SZ"+code
     url = "http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=%s"%code2 #核心题材
-    jsonStr = spider.LoadWeb(url,"新财务分析").GetDataFromWeb()
-    jsonData=json.loads(jsonStr)
-    财务主要指标 = jsonData["Tables"][0]
-    财务主要指标 = FillItemList(财务主要指标)
-    财务主要指标 = list(filter(lambda x:"DateTag" in x,财务主要指标))
-    #test = json.dumps(财务主要指标 , ensure_ascii=False)
-    for item in  财务主要指标:
-        item["Code"]=code
-        dateTag = item["每股指标Tag"]
-        r.DictSave("Stock:Detail:%s"%code,"财务主要指标:%s"%dateTag,item)
-        print(item["Code"])
-     #    time.sleep(random.uniform(2,4))
-    #chrome.quit()
+    task={"Code":code,"Url":url,"RetryCount":3}
+    qName="Stock:Task:新财务分析更新"
+    r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
+    print("生成任务 %s"%url)
+    pass
+
+def 新财务分析数据更新回调函数(): 
+    #code2="SH"+code if code[0]=="6" else "SZ"+code
+    #url = "http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=%s"%code2 #核心题材
+    qName="Stock:Task:新财务分析更新"
+    task = r.QueueDe("Stock:Task:新财务分析更新")
+    while None!=task:
+        try:
+            task = json.loads(task)
+            code=task["Code"]
+            url=task["Url"]
+            retryCount=task["RetryCount"]
+            jsonStr = spider.LoadWeb(url,"新财务分析").GetDataFromWeb()
+            jsonData=json.loads(jsonStr)
+            财务主要指标 = jsonData["Tables"][0]
+            财务主要指标 = FillItemList(财务主要指标)
+            财务主要指标 = list(filter(lambda x:"每股指标Tag" in x,财务主要指标))
+            for item in  财务主要指标:
+                item["Code"]=code
+                dateTag = item["每股指标Tag"]
+                r.DictSave("Stock:Detail:%s"%code,"财务主要指标:%s"%dateTag,item)
+            print("%s 剩余 %d "%(qName,r.Count(qName)))
+        except BaseException as e:
+            retryCount=retryCount-1
+            if 0<retryCount:
+                task={"Code":code,"Url":url,"RetryCount":retryCount}
+                r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
+            print("%s 异常 %s %s",(qName,url,e))
+            time.sleep(60)
+        finally:
+            task = r.QueueDe(qName)
       
-r.TraverseDict("Stock:BaseData:AllCode",新财务分析数据更新回调函数)
+r.TraverseDict("Stock:BaseData:AllCode",CreateTask)
+新财务分析数据更新回调函数()
 print("OK")
 chrome.quit()
 spider.Quit()
