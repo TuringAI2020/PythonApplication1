@@ -64,6 +64,6 @@ def 北向持股明细任务处理(qName,qItem):
         time.sleep(60)
      pass
  
-r.ProcQueue("Stock:Task:北向持股明细任务",CreateTask北向持股明细)
+r.ProcQueue("Stock:Task:北向持股明细任务",北向持股明细任务处理)
 print("OK") 
 spider.Quit()
