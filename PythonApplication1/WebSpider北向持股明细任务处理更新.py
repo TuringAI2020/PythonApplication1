@@ -38,7 +38,9 @@ def 北向持股明细任务处理(qName,qItem):
                 for row in rows:
                     if 12 == len(row): 
                         持股日期Tag=CONVERT.DateToInt(row[0])
-                        item={"持股日期":row[0]
+                        item={
+                            "Code":code
+                              ,"持股日期":row[0]
                               ,"持股日期Tag":持股日期Tag
                               ,"股票代码":row[1]
                               ,"股票简称":row[2]
