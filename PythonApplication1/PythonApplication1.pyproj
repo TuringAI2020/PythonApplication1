@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider融资融券更新.py</StartupFile>
+    <StartupFile>WebSpider资金流向更新.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -61,6 +61,7 @@
     <Compile Include="py03.py" />
     <Compile Include="py04.py" />
     <Compile Include="py05.py" />
+    <Compile Include="WebSpider资金流向更新.py" />
     <Compile Include="WebSpider融资融券更新.py" />
     <Compile Include="WebSpider多页面测试.py" />
     <Compile Include="WebSpider北向持股明细任务处理更新.py" />
