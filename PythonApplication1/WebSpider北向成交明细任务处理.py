@@ -8,7 +8,7 @@ import urllib.request
 import io  #StringIO模块就是在内存中读写str
 import re
 import json
- 
+import datetime
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
@@ -26,8 +26,7 @@ chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
 chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
 chrome = webdriver.Chrome( chrome_options=chrome_opt)
 chrome.implicitly_wait(10)
-#spider = ChromeSpider()
-timeTag = time.strftime("%Y-%m-%d", time.localtime())
+
  
 def SaveData北向成交明细ToRedis(code):
     jsonStr = HtmlConvertor.GetInst().LoadFromString(html=chrome.page_source).ConvertToJson() 
@@ -48,10 +47,9 @@ def SaveData北向成交明细ToRedis(code):
                       ,"沪深股通买入金额":CONVERT.UnitStrToFloat(row[6])
                       ,"沪深股通卖出金额":CONVERT.UnitStrToFloat(row[7])
                       ,"沪深股通成交金额":CONVERT.UnitStrToFloat(row[8])}
-                print(item)
+                print("北向成交明细 Task%s %s"%(taskID,item))
                 qName北向成交="Stock:BXCJMX:%s"%code
                 r.SortDictSave(qName北向成交,item,日期Tag)
-
  
 def ProcTask北向成交明细(qName,qItem):
     qItem = json.loads(qItem)
@@ -62,7 +60,10 @@ def ProcTask北向成交明细(qName,qItem):
         chrome.get(url)  
         time.sleep(random.uniform(2,3))
         SaveData北向成交明细ToRedis(code)
+        taskID=qName.split(":")[3]
+        r.DictSave("Stock:Task:BXCJMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
         print("已保存 %s %s"%(code,url))
+
     except BaseException as e:
         retryCount=retryCount-1
         if 0<retryCount:
@@ -71,18 +72,16 @@ def ProcTask北向成交明细(qName,qItem):
         print("%s 异常 %s %s",(qName,url,e))
         time.sleep(60)
     pass
-
-def CreateTask北向成交明细(dictName,code):
-    url = "http://data.eastmoney.com/hsgt/%s.html"%code #北向持股明细列表
-    task={"Code":code,"Url":url,"RetryCount":3}
-    qName="Stock:Task:BXCJMX"#北向成交明细
-    r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
-    pass
  
-r.TraverseDict("Stock:BaseData:AllCode",CreateTask北向成交明细)
-print("列表任务创建完毕")
-time.sleep(10)
-r.ProcQueue("Stock:Task:BXCJMX",ProcTask北向成交明细)
-print("OK")
-chrome.quit()
-#spider.Quit()
+taskID="0"
+startTime =   datetime.datetime.now()
+def 任务占有(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total):
+    if val==0 or "0" == val:
+        taskID=key
+        r.DictSave("Stock:Task:BXCJMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
+        r.ProcQueue("Stock:Task:BXCJMX:%s"%taskID,ProcTask北向成交明细)
+    pass
+
+r.TraverseDict("Stock:Task:BXCJMX:Status",任务占有)
+print("北向成交明细运行完毕 Task%s"%taskID) 
+chrome.quit() 

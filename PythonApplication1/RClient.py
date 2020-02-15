@@ -1,7 +1,8 @@
 import redis
 import json
-import py02
+import CONVERTOR
 import sys
+import math
  
 class RClient:
     pool = redis.ConnectionPool(host='localhost', port=6379, decode_responses=True)
@@ -60,6 +61,8 @@ class RClient:
             jsonStr = json.dumps(jsonVal , ensure_ascii=False)
         elif type(jsonVal) == type(""):
             jsonStr = jsonVal 
+        elif type(jsonVal) == type(0):
+            jsonStr = jsonVal 
         r.hset(dictName,key, jsonStr)
         pass    
     def DictKeys(self,dictName): 
@@ -117,18 +120,24 @@ class RClient:
             index+=1
             #length = r.llen(qName)
         pass
-    def TraverseDict(self,qName,callback,match=None):
+
+    def TraverseDict(self,dictName,callback,match=None):
         r = self.__GetDB(0)
-        length = r.hlen(qName)
+        total = r.hlen(dictName)
         pageIndex = 0
-        count=1000
-        pageCount=1+(length/count) if 0!=length%count else length/count
+        pageSize=10000
+        pageCount= math.ceil(total/pageSize) 
         while pageIndex < pageCount:
-            arr = r.hscan(qName,cursor=pageIndex,match=match,count=count)
-            for item in arr[1]:
-                callback(qName,item)
+            arr = r.hscan(dictName,cursor=pageIndex,match=match,count=pageSize)
+            index=0
+            for key in arr[1]:
+                index+=1
+                curIndex=pageIndex*pageSize+index
+                val=arr[1][key]
+                callback(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total)
             pageIndex+=1 
         pass
+
     def TraverseSortedSet(self,qName,callback):
         r = self.__GetDB(0)
         arr = r.zrevrangebyscore(qName,max=sys.maxsize,min=  0,withscores=True)
