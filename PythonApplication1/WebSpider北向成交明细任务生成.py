@@ -23,7 +23,7 @@ def CreateTask北向成交明细(dictName,key,val,pageIndex,pageCount,pageSize,c
 r.DeleteKeys("Stock:Task:BXCJMX:*")
 r.TraverseDict("Stock:BaseData:AllCode",CreateTask北向成交明细)
 for k in range(4):
-    r.DictSave("Stock:Task:BXCJMX:Status","Task%s"%k,0)
+        r.DictSave("Stock:Task:BXCJMX:Status","Task%s"%k,0)
 print("列表任务创建完毕")
 time.sleep(10) 
 print("OK") 

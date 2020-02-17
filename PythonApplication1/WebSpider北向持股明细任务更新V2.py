@@ -22,10 +22,9 @@ r=RClient.GetInst()
 chrome_opt = Options()      # 创建参数设置对象.
 chrome_opt.add_argument('--headless')   # 无界面化.
 chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
-chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
+chrome_opt.add_argument('--window-size=400,400')   # 设置窗口大小, 窗口大小会有影响.
 chrome = webdriver.Chrome( chrome_options=chrome_opt)
-chrome.implicitly_wait(10)
-spider = ChromeSpider()
+chrome.implicitly_wait(10) 
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
  
 def SaveTask北向持股明细ToRedis(code):
@@ -40,7 +39,8 @@ def SaveTask北向持股明细ToRedis(code):
             if "更多" == text and CHECKER.StartWith(href,"^\/hsgtcg\/StockInstitutionDetail.aspx\?stock="):
                 href="http://data.eastmoney.com/%s"%href
                 task={"Code":code,"Url":href,"RetryCount":3}
-                qName="Stock:Task:北向持股明细任务"
+                taskGroupID = int(code[len(code)-1])%4
+                qName="Stock:Task:BXCGMX:Task%d"%taskGroupID
                 r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
                 print(href)
 
@@ -74,19 +74,25 @@ def CreateTask北向持股明细(qName,qItem):
         if 0<retryCount:
             task={"Code":code,"Url":url,"RetryCount":retryCount}
             r.QueueEn("Stock:Task:北向持股明细列表任务",json.dumps(task,ensure_ascii=False))
-        print("%s 异常 %s %s",(qName,url,e))
-        time.sleep(60)
+        print("%s 异常 %s %s"%(qName,url,e))
+        time.sleep(120)
     pass
 
-def CreateTask北向持股明细列表(dictName,code):
+def CreateTask北向持股明细列表(dictName,item):
+    code=item[0]
     url = "http://data.eastmoney.com/hsgtcg/StockHdDetail.aspx?stock=%s"%code #北向持股明细列表
     task={"Code":code,"Url":url,"RetryCount":3}
     qName="Stock:Task:北向持股明细列表任务"
     r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
     pass
- 
-r.TraverseDict("Stock:BaseData:AllCode",CreateTask北向持股明细列表)
-print("列表任务创建完毕") 
+
+r.DeleteKeys("Stock:Task:北向持股明细列表任务")
+r.DeleteKeys("Stock:Task:BXCGMX:*")
+r.TraverseSortedSet("Stock:Task:VIPCode",CreateTask北向持股明细列表)
+for k in range(4):
+    r.DictSave("Stock:Task:BXCGMX:Status","Task%s"%k,0)
+print("北向持股明细任务创建完毕")
+
 r.ProcQueue("Stock:Task:北向持股明细列表任务",CreateTask北向持股明细)
 print("OK")
 chrome.quit() 
