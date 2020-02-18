@@ -45,8 +45,26 @@ def StartCWFXTaskProc():
         sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
         time.sleep(10)
     pass
+
+def StartZJLXTaskCreate():
+    print("StartZJLXTaskCreate")
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider资金流向任务生成V2.py"
+    _thread.start_new_thread(lambda :os.system("python %s"%path) ,() )
+    time.sleep(20)
+    pass
+def StartZJLXTaskProc():
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider资金流向任务处理V2.py"
+    for k in range(threadCount):
+        sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+        time.sleep(10)
+    pass
+
 #StartRZRQTaskCreate()
 #StartRZRQTaskProc()
 #StartCWFXTaskCreate()
-StartCWFXTaskProc()
+#StartCWFXTaskProc()
+#StartZJLXTaskCreate()
+StartZJLXTaskProc()
 print("OK")

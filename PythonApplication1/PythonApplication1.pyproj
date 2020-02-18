@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider新财务分析任务生成V2.py</StartupFile>
+    <StartupFile>WebSpider资金流向任务生成V2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,7 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="WebSpiderTest.py" />
+    <Compile Include="WebSpider资金流向任务处理V2.py" />
     <Compile Include="WebSpider新财务分析任务处理V2.py" />
+    <Compile Include="WebSpider资金流向任务生成V2.py" />
     <Compile Include="WebSpider自动作业.py" />
     <Compile Include="WebSpider新财务分析任务生成V2.py" />
     <Compile Include="WebSpider融资融券任务生成V2.py" />
@@ -74,7 +76,7 @@
     <Compile Include="老代码\WebSpider北向持股明细任务处理更新.py" />
     <Compile Include="老代码\WebSpider北向成交明细更新.py" />
     <Compile Include="老代码\WebSpider北向持股明细任务更新.py" />
-    <Compile Include="WebSpider新财务分析更新.py" />
+    <Compile Include="老代码\WebSpider新财务分析更新.py" />
     <Compile Include="WebSpider核心题材更新.py" />
     <Compile Include="WebSpider概念更新.py" />
     <Compile Include="WebSpider股票代码更新.py" />
