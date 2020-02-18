@@ -8,7 +8,8 @@ import urllib.request
 import io  #StringIO模块就是在内存中读写str
 import re
 import json
- 
+import datetime
+
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
@@ -20,14 +21,14 @@ from CONVERTOR import CONVERT
 
 r=RClient.GetInst()
  
-spider = ChromeSpider()
-timeTag = time.strftime("%Y-%m-%d", time.localtime())
+spider = ChromeSpider() 
  
 def 北向持股明细任务处理(qName,qItem): 
      task = json.loads(qItem)
      code=task["Code"]
      url=task["Url"]
      retryCount=task["RetryCount"] 
+     taskID=qName.split(":")[3]
      try:
          jsonStr = spider.LoadWeb(url,"北向持股明细").GetDataFromWeb()
          jsonData=json.loads(jsonStr)
@@ -54,18 +55,37 @@ def 北向持股明细任务处理(qName,qItem):
                               ,"持股市值变化5日":CONVERT.UnitStrToFloat(row[10])
                               ,"持股市值变化10日":CONVERT.UnitStrToFloat(row[11])
                               }
-                        qName北向持股="Stock:北向持股:%s"%code
+                        qName北向持股="Stock:BXCGMX:%s"%code
                         r.SortDictSave(qName北向持股,item,持股日期Tag)
-                        print(item)
+                r.DictSave("Stock:Task:BXCGMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
+                print("%s %s"%(taskID,item))
      except BaseException as e:
         retryCount=retryCount-1
         if 0<retryCount:
             task={"Code":code,"Url":url,"RetryCount":retryCount}
             r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
         print("%s %s"%(qItem,e))
-        time.sleep(60)
+        time.sleep(120)
      pass
  
-r.ProcQueue("Stock:Task:北向持股明细任务",北向持股明细任务处理)
+taskID="0"
+startTime =   datetime.datetime.now()
+
+def 任务占有(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total):
+    if val==0 or "0" == val:
+        taskID=key
+        r.DictSave("Stock:Task:BXCGMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
+        r.ProcQueue("Stock:Task:BXCGMX:%s"%taskID,北向持股明细任务处理)
+    pass
+
+
+#oldKeys= r.QueryKeys("Stock:北向持股:*");
+#for oldKey in oldKeys[1]:
+#    newKey = oldKey.replace("北向持股","BXCGMX")
+#    r.RenameKeyNX(oldKey,newKey)
+#    print("%s %s"%(oldKey,newKey))
+r.DeleteKeys("Stock:北向持股:*")
+
+#r.TraverseDict("Stock:Task:BXCGMX:Status",任务占有) 
 print("OK") 
 spider.Quit()

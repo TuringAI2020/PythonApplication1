@@ -72,6 +72,6 @@ def DownloadAllCode():
         linkBtn.click()
         time.sleep(random.uniform(2,4))
     chrome.quit()
-     
+    spider.Quit();
 DownloadAllCode() 
 print("OK")

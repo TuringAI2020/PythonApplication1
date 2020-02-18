@@ -152,4 +152,9 @@ class RClient:
             callback(qName,item)
             length = r.llen(qName)
         pass
+
+    def RenameKeyNX(self,src,dst):
+        r = self.__GetDB(0)
+        r.renamenx(src,dst);
+        pass
       

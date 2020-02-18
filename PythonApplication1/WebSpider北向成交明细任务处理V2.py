@@ -62,7 +62,7 @@ def ProcTask北向成交明细(qName,qItem):
         SaveData北向成交明细ToRedis(code)
         taskID=qName.split(":")[3]
         r.DictSave("Stock:Task:BXCJMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
-        print("已保存 %s %s"%(code,url))
+        print("已保存 %s %s %s"%(taskID,code,url))
 
     except BaseException as e:
         retryCount=retryCount-1
