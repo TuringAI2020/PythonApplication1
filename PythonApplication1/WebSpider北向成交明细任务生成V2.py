@@ -7,7 +7,7 @@ import re
 import json  
 from RClient import RClient
 from CONVERTOR import CONVERT
-
+import psutil
 r=RClient.GetInst()
  
 
@@ -22,8 +22,8 @@ def CreateTask北向成交明细(dictName,key,val,pageIndex,pageCount,pageSize,c
     pass
 r.DeleteKeys("Stock:Task:BXCJMX:*")
 r.TraverseDict("Stock:BaseData:AllCode",CreateTask北向成交明细)
-for k in range(4):
+for k in range(psutil.cpu_count(True)):
         r.DictSave("Stock:Task:BXCJMX:Status","Task%s"%k,0)
-print("列表任务创建完毕")
+print("WebSpider北向成交明细任务生成V2")
 time.sleep(10) 
 print("OK") 

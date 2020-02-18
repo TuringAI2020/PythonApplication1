@@ -8,6 +8,8 @@ import urllib.request
 import io  #StringIO模块就是在内存中读写str
 import re
 import json
+import psutil
+
  
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
@@ -78,8 +80,8 @@ def CreateTask北向持股明细(qName,qItem):
         time.sleep(120)
     pass
 
-def CreateTask北向持股明细列表(dictName,item):
-    code=item[0]
+def CreateTask北向持股明细列表(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total):
+    code=key
     url = "http://data.eastmoney.com/hsgtcg/StockHdDetail.aspx?stock=%s"%code #北向持股明细列表
     task={"Code":code,"Url":url,"RetryCount":3}
     qName="Stock:Task:北向持股明细列表任务"
@@ -88,8 +90,8 @@ def CreateTask北向持股明细列表(dictName,item):
 
 r.DeleteKeys("Stock:Task:北向持股明细列表任务")
 r.DeleteKeys("Stock:Task:BXCGMX:*")
-r.TraverseSortedSet("Stock:Task:VIPCode",CreateTask北向持股明细列表)
-for k in range(4):
+r.TraverseDict("Stock:BaseData:AllCode",CreateTask北向持股明细列表)
+for k in range(psutil.cpu_count(True)):
     r.DictSave("Stock:Task:BXCGMX:Status","Task%s"%k,0)
 print("北向持股明细任务创建完毕")
 

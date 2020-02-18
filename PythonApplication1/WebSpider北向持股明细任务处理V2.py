@@ -86,6 +86,6 @@ def 任务占有(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total):
 #    print("%s %s"%(oldKey,newKey))
 r.DeleteKeys("Stock:北向持股:*")
 
-#r.TraverseDict("Stock:Task:BXCGMX:Status",任务占有) 
+r.TraverseDict("Stock:Task:BXCGMX:Status",任务占有) 
 print("OK") 
 spider.Quit()

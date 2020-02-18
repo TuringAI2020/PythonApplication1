@@ -61,10 +61,43 @@ def StartZJLXTaskProc():
         time.sleep(10)
     pass
 
+def StartBXCGTaskCreate():
+    print("StartBXCGTaskCreate")
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider北向持股明细任务生成V2.py"
+    sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+    print(sub)
+    time.sleep(20)
+    pass
+def StartBXCGTaskProc():
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider北向持股明细任务处理V2.py"
+    for k in range(threadCount):
+        sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+        time.sleep(10)
+    pass
+def StartBXCJTaskCreate():
+    print("StartBXCJTaskCreate")
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider北向成交明细任务生成V2.py"
+    sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+    print(sub)
+    time.sleep(20)
+    pass
+def StartBXCJTaskProc():
+    threadCount=psutil.cpu_count(True)
+    path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider北向成交明细任务处理V2.py"
+    for k in range(threadCount):
+        sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+        time.sleep(10)
+    pass
 #StartRZRQTaskCreate()
 #StartRZRQTaskProc()
 #StartCWFXTaskCreate()
 #StartCWFXTaskProc()
 #StartZJLXTaskCreate()
-StartZJLXTaskProc()
+#StartZJLXTaskProc()
+#StartBXCGTaskCreate()
+#StartBXCJTaskCreate()
+StartBXCJTaskProc()
 print("OK")
