@@ -84,8 +84,9 @@ def ProcTask新财务分析(qName,qItem):
             item["Code"]=code
             dateTag = item["每股指标Tag"]
             key="财务主要指标:%s"%dateTag
-            r.DictSave("Stock:Detail:%s"%code,key,item)
-            SyncNotice.SendSyncNotice(qName,{"key":key,"value":item,"type":"HASH"})
+            targetNameSpace="Stock:Detail:%s"%code
+            r.DictSave(targetNameSpace,key,item)
+            SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"key":key,"value":item,"type":"HASH"})
         r.DictSave("Stock:Task:CWFX:Status","%s"%taskID,{"Running(分钟)":(datetime.datetime.now()-startTime).seconds/60,"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
     except BaseException as e:
         retryCount=retryCount-1

@@ -17,6 +17,7 @@ from CHECKER import CHECKER
 from HtmlConvertor import HtmlConvertor
 from RClient import RClient
 from CONVERTOR import CONVERT
+import SyncNotice
 
 r=RClient.GetInst()
 
@@ -49,7 +50,9 @@ def SaveData北向成交明细ToRedis(code):
                       ,"沪深股通成交金额":CONVERT.UnitStrToFloat(row[8])}
                 print("北向成交明细 Task%s %s"%(taskID,item))
                 qName北向成交="Stock:BXCJMX:%s"%code
+                targetNameSpace=qName北向成交
                 r.SortDictSave(qName北向成交,item,日期Tag)
+                SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"score":日期Tag,"value":item,"type":"SortedSet"})
  
 def ProcTask北向成交明细(qName,qItem):
     qItem = json.loads(qItem)

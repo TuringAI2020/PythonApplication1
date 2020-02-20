@@ -16,6 +16,6 @@ r=RClient.GetInst()
 
 def SendSyncNotice(namespace,item):
     if type("") == type(namespace) and 0<len(namespace):
-        qName="Sync:2DB:%s"%namespace
+        qName="Stock:Sync:2DB:%s"%namespace
         r.QueueEn(qName,json.dumps(item,ensure_ascii=False))
     pass

@@ -18,6 +18,7 @@ from CHECKER import CHECKER
 from HtmlConvertor import HtmlConvertor
 from RClient import RClient
 from CONVERTOR import CONVERT
+import SyncNotice
 
 r=RClient.GetInst()
  
@@ -56,7 +57,9 @@ def 北向持股明细任务处理(qName,qItem):
                               ,"持股市值变化10日":CONVERT.UnitStrToFloat(row[11])
                               }
                         qName北向持股="Stock:BXCGMX:%s"%code
+                        targetNameSpace=qName北向持股
                         r.SortDictSave(qName北向持股,item,持股日期Tag)
+                        SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"score":持股日期Tag,"value":item,"type":"SortedSet"})
                 r.DictSave("Stock:Task:BXCGMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
                 print("%s %s"%(taskID,item))
      except BaseException as e:

@@ -27,7 +27,8 @@ def StartRZRQTaskCreate():
     print("StartRZRQTaskCreate")
     threadCount=psutil.cpu_count(True)
     path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider融资融券任务生成V2.py"
-    _thread.start_new_thread(lambda :os.system("python %s"%path) ,() )
+    #_thread.start_new_thread(lambda :os.system("python %s"%path) ,() )
+    sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
     time.sleep(20)
     pass
 
@@ -95,7 +96,7 @@ def StartBXCJTaskProc():
 #StartRZRQTaskCreate()
 #StartRZRQTaskProc()
 #StartCWFXTaskCreate()
-StartCWFXTaskProc()
+#StartCWFXTaskProc()
 #StartZJLXTaskCreate()
 #StartZJLXTaskProc()
 #StartBXCGTaskCreate()
