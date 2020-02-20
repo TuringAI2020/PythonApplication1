@@ -35,7 +35,8 @@ def StartCWFXTaskCreate():
     print("StartCWFXTaskCreate")
     threadCount=psutil.cpu_count(True)
     path=r"D:\WangJunCode2020\PythonApplication1\PythonApplication1\WebSpider新财务分析任务生成V2.py"
-    _thread.start_new_thread(lambda :os.system("python %s"%path) ,() )
+    sub=subprocess.Popen("cmd.exe /C python %s"%path,creationflags=subprocess.CREATE_NEW_CONSOLE)
+    print(sub)
     time.sleep(20)
     pass
 def StartCWFXTaskProc():
@@ -94,10 +95,11 @@ def StartBXCJTaskProc():
 #StartRZRQTaskCreate()
 #StartRZRQTaskProc()
 #StartCWFXTaskCreate()
-#StartCWFXTaskProc()
+StartCWFXTaskProc()
 #StartZJLXTaskCreate()
 #StartZJLXTaskProc()
 #StartBXCGTaskCreate()
+#StartBXCGTaskProc()
 #StartBXCJTaskCreate()
-StartBXCJTaskProc()
+#StartBXCJTaskProc()
 print("OK")
