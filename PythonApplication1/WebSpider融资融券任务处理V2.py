@@ -17,6 +17,7 @@ from CHECKER import CHECKER
 from HtmlConvertor import HtmlConvertor
 from RClient import RClient
 from CONVERTOR import CONVERT
+import SyncNotice
 
 r=RClient.GetInst()
 
@@ -59,8 +60,9 @@ def SaveData融资融券ToRedis(code):
                       }
                 print("融资融券  %s"%item)
                 qName融资融券="Stock:RZRQ:%s"%code
+                targetNameSpace = qName融资融券
                 r.SortDictSave(qName融资融券,item,交易日期Tag)
-
+                SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"score":交易日期Tag,"value":item,"type":"SortedSet"}) 
  
 def ProcTask融资融券(qName,qItem):
     qItem = json.loads(qItem)
@@ -78,7 +80,7 @@ def ProcTask融资融券(qName,qItem):
         retryCount=retryCount-1
         if 0<retryCount:
             task={"Code":code,"Url":url,"RetryCount":retryCount}
-            r.QueueEn("Stock:Task:RZRQ:%s"%taskID,json.dumps(task,ensure_ascii=False))
+            r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
         print("%s 异常 %s %s",(qName,url,e))
         time.sleep(120)
     pass

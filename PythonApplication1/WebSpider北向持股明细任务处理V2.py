@@ -60,8 +60,9 @@ def 北向持股明细任务处理(qName,qItem):
                         targetNameSpace=qName北向持股
                         r.SortDictSave(qName北向持股,item,持股日期Tag)
                         SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"score":持股日期Tag,"value":item,"type":"SortedSet"})
+                        print("%s %s"%(taskID,item))
                 r.DictSave("Stock:Task:BXCGMX:Status","%s"%taskID,{"StartTime": startTime.strftime('%Y-%m-%d %H:%M:%S'),"UpdateTime":datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),"Running":(datetime.datetime.now()-startTime).seconds})
-                print("%s %s"%(taskID,item))
+
      except BaseException as e:
         retryCount=retryCount-1
         if 0<retryCount:
@@ -87,7 +88,7 @@ def 任务占有(dictName,key,val,pageIndex,pageCount,pageSize,curIndex,total):
 #    newKey = oldKey.replace("北向持股","BXCGMX")
 #    r.RenameKeyNX(oldKey,newKey)
 #    print("%s %s"%(oldKey,newKey))
-r.DeleteKeys("Stock:北向持股:*")
+#r.DeleteKeys("Stock:北向持股:*")
 
 r.TraverseDict("Stock:Task:BXCGMX:Status",任务占有) 
 print("OK") 

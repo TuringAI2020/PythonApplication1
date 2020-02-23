@@ -13,12 +13,13 @@ import datetime
  
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.chrome.options import Options
-#from ChromeSpider import ChromeSpider
+from selenium.webdriver.chrome.options import Options 
 from CHECKER import CHECKER
 from HtmlConvertor import HtmlConvertor
 from RClient import RClient
 from CONVERTOR import CONVERT
+import SyncNotice
+
 startTime =   datetime.datetime.now()
 r=RClient.GetInst()
 
@@ -57,9 +58,10 @@ def SaveData资金流向ToRedis(code):
                       }
                 print(item)
                 qName资金流向="Stock:ZJLX:%s"%code
+                targetNameSpace=qName资金流向
                 r.SortDictSave(qName资金流向,item,日期Tag)
+                SyncNotice.SendSyncNotice(targetNameSpace,{"namespace":targetNameSpace,"code":code,"score":日期Tag,"value":item,"type":"SortedSet"}) 
 
- 
 def ProcTask资金流向(qName,qItem):
     qItem = json.loads(qItem)
     code=qItem["Code"]

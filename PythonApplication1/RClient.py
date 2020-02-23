@@ -138,12 +138,14 @@ class RClient:
             pageIndex+=1 
         pass
 
-    def TraverseSortedSet(self,qName,callback):
+
+    def TraverseSortedSet(self,setName,callback):
         r = self.__GetDB(0)
-        arr = r.zrevrangebyscore(qName,max=sys.maxsize,min=  0,withscores=True)
+        arr = r.zrevrangebyscore(setName,max=sys.maxsize,min=  0,withscores=True)
         for item in arr:
-            callback(qName,item)
+            callback(setName,item)
         pass
+
     def ProcQueue(self,qName,callback):
         r = self.__GetDB(0)
         length = r.llen(qName)
