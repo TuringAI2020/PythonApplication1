@@ -15,7 +15,7 @@ def ProcWebData():
     while True:
         try:
             res = requests.get(serverUrl)
-            print("接收 %s"%res.text)
+            print("接收 %s \r\n --------\r\n"%res.text)
             res = json.loads(res.text)
             if(res["success"]== True ):
                 data = res["data"]
@@ -52,7 +52,7 @@ def ProcWebData():
                                     resArr.append(item)
                     post_data={"taskId":taskId,"method":"SaveBXCGMX","jsonReq": json.dumps(data,ensure_ascii=False),"jsonRes": json.dumps(resArr,ensure_ascii=False)}
                     res2 = requests.post(serverUrl,data=post_data)
-                    print("%s \r\n %s \r\n ----- "%(data,res2.text))
+                    print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
             else:
                 time.sleep(3)
         except BaseException as e:
