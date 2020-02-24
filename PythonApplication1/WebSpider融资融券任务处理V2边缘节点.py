@@ -24,7 +24,7 @@ def ProcWebData():
                     code=data["Code"]
                     url=data["Url"]
                     resArr=[]
-                    jsonStr = spider.LoadWeb(url,"北向成交明细").GetDataFromWeb() 
+                    jsonStr = spider.LoadWeb(url,"融资融券").GetDataFromWeb() 
                     jsonData=json.loads(jsonStr) 
 
                     if ("Tables" in jsonData and []!=jsonData["Tables"]): 
