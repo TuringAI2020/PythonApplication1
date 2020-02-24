@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider北向持股明细任务处理V2边缘节点.py</StartupFile>
+    <StartupFile>WebSpider融资融券任务处理V2边缘节点.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,7 +24,9 @@
   <ItemGroup>
     <Compile Include="SyncNotice.py" />
     <Compile Include="WebSpiderTest.py" />
+    <Compile Include="WebSpider融资融券任务处理V2边缘节点.py" />
     <Compile Include="WebSpider北向成交明细任务生成V2增量.py" />
+    <Compile Include="WebSpider北向成交明细任务处理V2边缘节点.py" />
     <Compile Include="WebSpider北向持股明细任务处理V2边缘节点.py" />
     <Compile Include="WebSpider北向持股明细任务生成V2增量.py" />
     <Compile Include="WebSpider自动作业线上.py" />

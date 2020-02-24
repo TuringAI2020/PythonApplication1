@@ -23,6 +23,6 @@ r.DeleteKeys("Stock:Task:BXCJMX:*")
 r.TraverseSortedSet("Stock:Task:VIPCode",CreateTask北向成交明细)
 for k in range(psutil.cpu_count(True)):
         r.DictSave("Stock:Task:BXCJMX:Status","Task%s"%k,0)
-print("WebSpider北向成交明细任务生成V2")
+print("WebSpider北向成交明细任务生成V2增量")
 time.sleep(10) 
 print("OK") 
