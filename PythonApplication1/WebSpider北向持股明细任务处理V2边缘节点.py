@@ -9,7 +9,7 @@ from CONVERTOR import CONVERT
 
 spider = ChromeSpider() 
 def ProcWebData():
-    taskId="Task0"
+    taskId="Task1"
     serverUrl="http://122.51.159.248/YunStockService?taskId=%s"%taskId
     #serverUrl="http://127.0.0.1:5000/YunStockService?taskId=%s"%taskId
     while True:
