@@ -67,7 +67,7 @@ def ProcTask北向成交明细(qName,qItem):
         retryCount=retryCount-1
         if 0<retryCount:
             task={"Code":code,"Url":url,"RetryCount":retryCount}
-            r.QueueEn("Stock:Task:BXCJMX",json.dumps(task,ensure_ascii=False))
+            r.QueueEn(qName,json.dumps(task,ensure_ascii=False))
         print("%s 异常 %s %s",(qName,url,e))
         time.sleep(60)
     pass

@@ -16,9 +16,12 @@ class HtmlConvertor:
         arr=[]
         for link in links:
             text = link.text
-            href = link["href"]
-            if 0<len(text) and 0<len(href) :
+            href = link["href"].strip() if "href" in link.attrs else ""
+            title = link["title"].strip() if "title" in link.attrs else ""
+            if  0<len(text) and 0<len(href) :
                 item={"Text":text,"Href":href}
+                if 0<len(title):
+                    item["Title"]=title
                 if 7<=len(href) and re.match("http://",href) :
                     item["absolute"]=1
                 elif 7<=len(href) and re.match("https://",href) :
