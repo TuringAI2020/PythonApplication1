@@ -14,7 +14,7 @@ import random
 chrome_opt = Options()      # 创建参数设置对象.
 chrome_opt.add_argument('--headless')   # 无界面化.
 chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
-chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
+chrome_opt.add_argument('--window-size=1920,1080')   # 设置窗口大小, 窗口大小会有影响.
 chrome = webdriver.Chrome( chrome_options=chrome_opt)
 chrome.implicitly_wait(10)
 
@@ -47,7 +47,7 @@ def AddToArray(jgCode,jgName,targetArr):
 
  
 def ProcWebData():
-    taskId = "20200226"#Stock:Task:BXCGMXURL:20200221
+    taskId = "20200218"#Stock:Task:BXCGMXURL:20200221
     serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     while True:
@@ -65,7 +65,7 @@ def ProcWebData():
                     jgName = data["jgName"]
                     url = data["Url"] 
                     chrome.get(url)  
-                    time.sleep(random.uniform(2,3))
+                    time.sleep(random.uniform(2,5))
                     postArr=[]
                     pageIndex = 0
                     if True != CHECKER.Contains(chrome.page_source,"下一页"):
@@ -77,14 +77,25 @@ def ProcWebData():
                         chrome.switch_to_window(chrome.window_handles[0]) 
                         linkBtn = chrome.find_element_by_link_text("下一页") 
                         clsVal = linkBtn.get_attribute('class')
+                        closebtn=chrome.find_element_by_id("intellcontclose")
+                        closebtn.click()
                         while False == CHECKER.Contains(clsVal,"nolink"):  
+                            chrome.switch_to_window(chrome.window_handles[0]) 
                             linkBtn = chrome.find_element_by_link_text("下一页")
                             chrome.execute_script("arguments[0].scrollIntoView(false);",linkBtn)
                             postArr=AddToArray(jgCode,jgName,postArr)
                             print("多页数据 %s %s %s"%(jgCode,jgName,pageIndex))
                             pageIndex+=1
+                            linkBtn = chrome.find_element_by_link_text("下一页")
                             linkBtn.click()
-                            time.sleep(random.uniform(2,3))
+                            time.sleep(random.uniform(3,5))
+                            style = chrome.find_element_by_class_name("content").find_element_by_tag_name("div").get_attribute("style")
+                            subCount=5
+                            while True != CHECKER.Contains(style,"none") and 0<subCount:
+                                print("还在加载中...%s %s"%(pageIndex,ssubCount))
+                                time.sleep(random.uniform(3,5))
+                                style = chrome.find_element_by_class_name("content").find_element_by_tag_name("div").get_attribute("style")
+                                subCount-=1
                             linkBtn = chrome.find_element_by_link_text("下一页")
                             clsVal = linkBtn.get_attribute('class')
                         pass
