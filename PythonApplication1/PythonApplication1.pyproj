@@ -25,9 +25,9 @@
     <Compile Include="SyncNotice.py" />
     <Compile Include="WebSpiderTest.py" />
     <Compile Include="WebSpider北向持股明细机构维度V2边缘节点.py" />
-    <Compile Include="WebSpider北向持股统计任务处理V2边缘节点.py" />
-    <Compile Include="WebSpider北向持股统计任务创建V2边缘节点.py" />
-    <Compile Include="WebSpider所有机构更新V2边缘节点.py" />
+    <Compile Include="WebSpider北向持股统计任务处理V3边缘节点.py" />
+    <Compile Include="WebSpider北向持股统计任务创建V3边缘节点.py" />
+    <Compile Include="WebSpider所有机构更新V3边缘节点.py" />
     <Compile Include="WebSpider新财务分析任务处理V2边缘节点.py" />
     <Compile Include="WebSpider北向股票代码更新V2边缘节点.py" />
     <Compile Include="WebSpider资金流向任务处理V2边缘节点.py" />

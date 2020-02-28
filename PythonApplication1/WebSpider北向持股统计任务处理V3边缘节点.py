@@ -13,8 +13,9 @@ import codecs
 spider = ChromeSpider() 
 def ProcWebData():
     taskId = "Task0"
-    #serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGTJ&taskId=%s"%taskId
-    serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
+    serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
+    #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
+    count=0
     while True:
         try:
             res = requests.get(serverUrl)
@@ -63,11 +64,11 @@ def ProcWebData():
                             jgName = urllib.parse.unquote(params["jgName"][0].replace('%u', '\\u').encode('utf-8').decode('unicode-escape')).strip()
                             item = {"DateTag":dateTag,"Date":date,"jgCode":jgCode,"jgName":jgName,"Url":link,"RetryCount":3}
                             items.append(item)
-                        post_data2 = {"keyName":"BXCGMXURL","jsonReq": json.dumps(data,ensure_ascii=False),"jsonRes": json.dumps(items,ensure_ascii=False)}
+                        post_data2 = {"keyName":"BXCGMXURLTASK","jsonReq": json.dumps(data,ensure_ascii=False),"jsonRes": json.dumps(items,ensure_ascii=False)}
                         res3 = requests.post(serverUrl,data=post_data2)
                         print("POST %s \r\n RES %s \r\n --------- \r\n" % (post_data2,res3.text))
-
-                        print(links)
+                        count+=1
+                        print("已处理 %s"%count)
             else:
                 time.sleep(3)
         except BaseException as e:
