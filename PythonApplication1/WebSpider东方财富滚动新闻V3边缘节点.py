@@ -20,15 +20,15 @@ chrome = webdriver.Chrome( chrome_options=chrome_opt)
 chrome.implicitly_wait(10)
  
  
-def ProcWebData():
+def ProcWebData(name,url):
     #serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     serverUrl = "http://127.0.0.1:80/YunStock2Service"
     while True:
         try: 
             #url="https://kuaixun.eastmoney.com/"
-            url="https://kuaixun.eastmoney.com/qqyh.html"
+            #url="https://kuaixun.eastmoney.com/qqyh.html"
 
-            name="东方财富网快讯"
+            #name="东方财富网快讯"
             chrome.get(url)  
             time.sleep(5)
             chrome.switch_to_window(chrome.window_handles[0]) 
@@ -53,12 +53,23 @@ def ProcWebData():
             post_data={"keyName":"SHORTNEWS","jsonReq": json.dumps({"Name":name,"Url":url},ensure_ascii=False),"jsonRes": json.dumps(postArr,ensure_ascii=False)}
             res2 = requests.post(serverUrl,data=post_data)
             print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
-            time.sleep(3000)
         except BaseException as e:
             print(" 异常 %s " % e)
-            time.sleep(6000)
+            time.sleep(60)
     pass
-ProcWebData()
+
+while True:
+    ProcWebData("债券","https://kuaixun.eastmoney.com/zq.html")
+    ProcWebData("外汇","https://kuaixun.eastmoney.com/wh.html")
+    ProcWebData("商品","https://kuaixun.eastmoney.com/sp.html")
+    ProcWebData("全球股市","https://kuaixun.eastmoney.com/qqgs.html")
+    ProcWebData("经济数据","https://kuaixun.eastmoney.com/jjsj.html")
+    ProcWebData("全球央行","https://kuaixun.eastmoney.com/qqyh.html")
+    ProcWebData("地区","https://kuaixun.eastmoney.com/dq.html")
+    ProcWebData("上市公司","https://kuaixun.eastmoney.com/ssgs.html")
+    ProcWebData("焦点","https://kuaixun.eastmoney.com/yw.html")
+    ProcWebData("滚动","https://kuaixun.eastmoney.com/")
+    time.sleep(600)
 spider.Quit()
 print("全部结束")
  
