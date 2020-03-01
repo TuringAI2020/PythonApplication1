@@ -22,40 +22,41 @@ chrome.implicitly_wait(10)
  
 def ProcWebData(name,url):
     #serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
-    serverUrl = "http://127.0.0.1:80/YunStock2Service"
-    while True:
-        try: 
-            #url="https://kuaixun.eastmoney.com/"
-            #url="https://kuaixun.eastmoney.com/qqyh.html"
+    serverUrl = "http://127.0.0.1:80/YunStock2Service" 
+    try: 
+        #url="https://kuaixun.eastmoney.com/"
+        #url="https://kuaixun.eastmoney.com/qqyh.html"
 
-            #name="东方财富网快讯"
-            chrome.get(url)  
-            time.sleep(5)
-            chrome.switch_to_window(chrome.window_handles[0]) 
-            list = chrome.find_element_by_id("livenews-list").find_elements_by_class_name("livenews-media")
-            postArr=[]
-            for listItem in list:
-                listItem_id=listItem.get_attribute("id").split("-")[-1]
-                year=listItem_id[:4]
-                month=listItem_id[4:6]
-                day=listItem_id[6:8]
-                arr=listItem.text.split()
-                date =  "%s-%s-%s"%(year,month,day)
-                dateTime = "%s %s:00"%(date,arr[0])
-                content="%s %s"%(date,listItem.text.strip())
-                href="" 
-                innerHtml=listItem.get_attribute("innerHTML")
-                if True == CHECKER.Contains(innerHtml,"href="):
-                    href=listItem.find_element_by_tag_name("a").get_attribute("href")
-                item={"Source":name,"PublishTime":dateTime,"Content":content,"Href":href}
-                print(item)
-                postArr.append(item)
-            post_data={"keyName":"SHORTNEWS","jsonReq": json.dumps({"Name":name,"Url":url},ensure_ascii=False),"jsonRes": json.dumps(postArr,ensure_ascii=False)}
-            res2 = requests.post(serverUrl,data=post_data)
-            print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
-        except BaseException as e:
-            print(" 异常 %s " % e)
-            time.sleep(60)
+        #name="东方财富网快讯"
+        chrome.get(url)  
+        time.sleep(5)
+        chrome.switch_to_window(chrome.window_handles[0]) 
+        list = chrome.find_element_by_id("livenews-list").find_elements_by_class_name("livenews-media")
+        postArr=[]
+        for listItem in list:
+            listItem_id=listItem.get_attribute("id").split("-")[-1]
+            year=listItem_id[:4]
+            month=listItem_id[4:6]
+            day=listItem_id[6:8]
+            _time=listItem.find_element_by_class_name("time").text.strip()
+            arr=listItem.text.split()
+            date =  "%s-%s-%s"%(year,month,day)
+            dateTime = "%s %s:00"%(date,_time)
+            content="%s %s"%(date,listItem.text.strip())
+            href="" 
+            innerHtml=listItem.get_attribute("innerHTML")
+            if True == CHECKER.Contains(innerHtml,"href="):
+                href=listItem.find_element_by_tag_name("a").get_attribute("href")
+            item={"Source":name,"PublishTime":dateTime,"Content":content,"Href":href}
+            print("%s%s"%(name,dateTime))
+            postArr.append(item)
+        post_data={"keyName":"SHORTNEWS","jsonReq": json.dumps({"Name":name,"Url":url},ensure_ascii=False),"jsonRes": json.dumps(postArr,ensure_ascii=False)}
+        #print(post_data)
+        #res2 = requests.post(serverUrl,data=post_data)
+        #print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
+    except BaseException as e:
+        print(" 异常 %s " % e)
+        time.sleep(60)
     pass
 
 while True:
@@ -69,7 +70,7 @@ while True:
     ProcWebData("上市公司","https://kuaixun.eastmoney.com/ssgs.html")
     ProcWebData("焦点","https://kuaixun.eastmoney.com/yw.html")
     ProcWebData("滚动","https://kuaixun.eastmoney.com/")
-    time.sleep(600)
+    time.sleep(20)
 spider.Quit()
 print("全部结束")
  
