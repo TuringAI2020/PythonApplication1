@@ -24,7 +24,11 @@ timeTag = time.strftime("%Y-%m-%d", time.localtime())
 def Download北向Code(): 
     url = "http://data.eastmoney.com/hsgtcg/list.html"# 沪深港通持股
 
-    chrome.get(url)  
+    chrome.get(url) 
+    time.sleep(5)
+    closebtn=chrome.find_element_by_id("intellcontclose")
+    closebtn.click()
+
     linkBtn = chrome.find_element_by_link_text("下一页")
     clsVal = linkBtn.get_attribute('class')
     pageIndex = 0
@@ -58,7 +62,7 @@ def Download北向Code():
             pass
         pageIndex+=1
         linkBtn.click()
-        time.sleep(random.uniform(2,3))
+        time.sleep(random.uniform(3,6))
     chrome.quit()
 
 

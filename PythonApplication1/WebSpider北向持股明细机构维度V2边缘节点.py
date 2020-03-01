@@ -47,9 +47,9 @@ def AddToArray(jgCode,jgName,targetArr):
 
  
 def ProcWebData():
-    taskId = "20200227"#Stock:Task:BXCGMXURL:20200221
-    #serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
-    serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
+    taskId = "20200225"#Stock:Task:BXCGMXURL:20200221
+    serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
+    #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     while True:
         try:
             res = requests.get(serverUrl)
@@ -92,10 +92,11 @@ def ProcWebData():
                             style = chrome.find_element_by_class_name("content").find_element_by_tag_name("div").get_attribute("style")
                             subCount=5
                             while True != CHECKER.Contains(style,"none") and 0<subCount:
-                                print("还在加载中...%s %s"%(pageIndex,ssubCount))
+                                print("还在加载中...%s %s"%(pageIndex,subCount))
+                                subCount-=1
                                 time.sleep(random.uniform(3,5))
                                 style = chrome.find_element_by_class_name("content").find_element_by_tag_name("div").get_attribute("style")
-                                subCount-=1
+                                
                             linkBtn = chrome.find_element_by_link_text("下一页")
                             clsVal = linkBtn.get_attribute('class')
                         pass

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider北向持股统计任务处理V3边缘节点.py</StartupFile>
+    <StartupFile>WebSpider新财务分析任务处理V2边缘节点.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,8 +22,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SyncNotice.py" />
-    <Compile Include="WebSpiderTest.py" />
+    <Compile Include="WebSpider新财务分析任务生成V3边缘节点.py" />
+    <Compile Include="WebSpider资金流向任务生成V3边缘节点.py" />
+    <Compile Include="WebSpider融资融券任务生成V3边缘节点.py" />
+    <Compile Include="老代码2\SyncNotice.py" />
+    <Compile Include="老代码2\WebSpiderTest.py" />
     <Compile Include="WebSpider东方财富滚动新闻V3边缘节点.py" />
     <Compile Include="WebSpider北向持股明细机构维度V2边缘节点.py" />
     <Compile Include="WebSpider北向持股统计任务处理V3边缘节点.py" />
@@ -33,18 +36,18 @@
     <Compile Include="WebSpider北向股票代码更新V2边缘节点.py" />
     <Compile Include="WebSpider资金流向任务处理V2边缘节点.py" />
     <Compile Include="WebSpider融资融券任务处理V2边缘节点.py" />
-    <Compile Include="WebSpider北向成交明细任务生成V2增量.py" />
-    <Compile Include="WebSpider北向成交明细任务处理V2边缘节点.py" />
-    <Compile Include="WebSpider北向持股明细任务处理V2边缘节点.py" />
-    <Compile Include="WebSpider北向持股明细任务生成V2增量.py" />
-    <Compile Include="WebSpider自动作业线上.py" />
-    <Compile Include="WebSpider资金流向任务处理V2.py" />
-    <Compile Include="WebSpider新财务分析任务处理V2.py" />
-    <Compile Include="WebSpider资金流向任务生成V2.py" />
-    <Compile Include="WebSpider自动作业线下.py" />
-    <Compile Include="WebSpider新财务分析任务生成V2增量.py" />
-    <Compile Include="WebSpider融资融券任务生成V2.py" />
-    <Compile Include="WebSpider融资融券任务处理V2.py" />
+    <Compile Include="老代码2\WebSpider北向成交明细任务生成V2增量.py" />
+    <Compile Include="老代码2\WebSpider北向成交明细任务处理V2边缘节点.py" />
+    <Compile Include="老代码2\WebSpider北向持股明细任务处理V2边缘节点.py" />
+    <Compile Include="老代码2\WebSpider北向持股明细任务生成V2增量.py" />
+    <Compile Include="老代码2\WebSpider自动作业线上.py" />
+    <Compile Include="老代码2\WebSpider资金流向任务处理V2.py" />
+    <Compile Include="老代码2\WebSpider新财务分析任务处理V2.py" />
+    <Compile Include="老代码2\WebSpider资金流向任务生成V2.py" />
+    <Compile Include="老代码2\WebSpider自动作业线下.py" />
+    <Compile Include="老代码2\WebSpider新财务分析任务生成V2增量.py" />
+    <Compile Include="老代码2\WebSpider融资融券任务生成V2.py" />
+    <Compile Include="老代码2\WebSpider融资融券任务处理V2.py" />
     <Compile Include="老代码\AnalysisProcessor新财务分析.py" />
     <Compile Include="老代码\AnalysisProcessor经营分析.py" />
     <Compile Include="老代码\AnalysisProcessor融资融券.py" />
@@ -81,10 +84,10 @@
     <Compile Include="老代码\py03.py" />
     <Compile Include="老代码\py04.py" />
     <Compile Include="老代码\py05.py" />
-    <Compile Include="WebSpider北向成交明细任务生成V2.py" />
-    <Compile Include="WebSpider北向成交明细任务处理V2.py" />
-    <Compile Include="WebSpider北向持股明细任务处理V2.py" />
-    <Compile Include="WebSpider北向持股明细任务生成V2.py" />
+    <Compile Include="老代码2\WebSpider北向成交明细任务生成V2.py" />
+    <Compile Include="老代码2\WebSpider北向成交明细任务处理V2.py" />
+    <Compile Include="老代码2\WebSpider北向持股明细任务处理V2.py" />
+    <Compile Include="老代码2\WebSpider北向持股明细任务生成V2.py" />
     <Compile Include="老代码\WebSpider资金流向更新.py" />
     <Compile Include="老代码\WebSpider融资融券更新.py" />
     <Compile Include="老代码\WebSpider多页面测试.py" />
@@ -103,6 +106,7 @@
     <InterpreterReference Include="Global|PythonCore|3.7" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="老代码2\" />
     <Folder Include="老代码\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

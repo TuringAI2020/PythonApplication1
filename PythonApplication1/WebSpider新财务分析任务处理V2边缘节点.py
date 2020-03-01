@@ -41,7 +41,7 @@ def FillItemList(table):
              else:
                  if 8 == len(row[rowIndex]) and int(row[rowIndex][0])<3:
                      row[rowIndex] = "20" + row[rowIndex] 
-                 elif 8 == len(row[rowIndex]) and 3<=int(row[rowIndex][0]):
+                 elif 8 == len(row[rowIndex]) and 9==int(row[rowIndex][0]):
                      row[rowIndex] = "19" + row[rowIndex] 
                  arr[rowIndex - 1][key + "Tag"] = CONVERT.DateToInt(row[rowIndex])
                  arr[rowIndex - 1][key] = row[rowIndex] 
@@ -51,9 +51,9 @@ def FillItemList(table):
      return arr  
 
 def ProcWebData():
-    taskId="Task1"
-    serverUrl="http://122.51.159.248/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
-    #serverUrl="http://127.0.0.1:80/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
+    taskId="Task0"
+    #serverUrl="http://122.51.159.248/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
+    serverUrl="http://127.0.0.1:80/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
     while True:
         try:
             res = requests.get(serverUrl)
@@ -77,12 +77,11 @@ def ProcWebData():
                     post_data={"keyName":"CWFX","taskId":taskId,"method":"SaveProcData","jsonReq": json.dumps(data,ensure_ascii=False),"jsonRes": json.dumps(resArr,ensure_ascii=False)}
                     res2 = requests.post(serverUrl,data=post_data)
                     print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
- 
             else:
                 time.sleep(5)
         except BaseException as e:
             print(" 异常 %s "%e)
-            time.sleep(20)
+            time.sleep(60)
     pass
 ProcWebData()
 spider.Quit()
