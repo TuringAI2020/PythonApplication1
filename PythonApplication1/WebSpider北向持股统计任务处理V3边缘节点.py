@@ -13,8 +13,8 @@ import codecs
 spider = ChromeSpider() 
 def ProcWebData():
     taskId = "Task0"
-    #serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
-    serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
+    serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
+    #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGTJ&taskId=%s" % taskId
     count=0
     while True:
         try:
@@ -26,6 +26,9 @@ def ProcWebData():
                 if 10 <= len(data):
                     data = json.loads(data) 
                     url = data["Url"]
+                    params = urllib.parse.parse_qs(urllib.parse.urlparse(url).query) 
+                    jgCode = params["jgCode"][0]
+
                     resArr = []
                     jsonStr = spider.LoadWeb(url,"北向持股统计").GetDataFromWeb() 
                     jsonData = json.loads(jsonStr)
@@ -37,7 +40,8 @@ def ProcWebData():
                                 if 8 == len(row): 
                                     持股日期Tag = CONVERT.DateToInt(row[0])
                                     item = { 
-                                             "持股日期":row[0]
+                                             "jgCode":jgCode
+                                            ,"持股日期":row[0]
                                             ,"持股日期Tag":持股日期Tag
                                             ,"机构名称":row[1] 
                                             ,"持股只数":CONVERT.StrToInt(row[3])
