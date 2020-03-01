@@ -41,10 +41,12 @@ class ChromeSpider:
         chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
         chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
         self.chrome = webdriver.Chrome(chrome_options=chrome_opt)     # 创建Chrome对象
-    def LoadWeb(self,url,args=None):
+    def LoadWeb(self,url,args=None,callback=None):
         try:
             self.chrome.get(url)     # get .
             self.chrome.implicitly_wait(10)
+            if None != callback:
+                callback(url,args,self.chrome.page_source)
             self.html = self.chrome.page_source
             self.url = url
             self.args=args
