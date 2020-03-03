@@ -9,7 +9,7 @@ from CONVERTOR import CONVERT
 
 spider = ChromeSpider() 
 def ProcWebData():
-    taskId="Task1"
+    taskId="Task0"
     serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCJMX&taskId=%s"%taskId
     #serverUrl="http://127.0.0.1:80/YunStock2Service?keyName=BXCJMX&taskId=%s"%taskId
     while True:
@@ -50,7 +50,7 @@ def ProcWebData():
                     print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
  
             else:
-                time.sleep(5)
+                time.sleep(10)
         except BaseException as e:
             print(" 异常 %s "%e)
             time.sleep(20)

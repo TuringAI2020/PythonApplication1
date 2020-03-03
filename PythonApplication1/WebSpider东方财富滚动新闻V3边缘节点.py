@@ -70,7 +70,7 @@ while True:
     ProcWebData("上市公司","https://kuaixun.eastmoney.com/ssgs.html")
     ProcWebData("焦点","https://kuaixun.eastmoney.com/yw.html")
     ProcWebData("滚动","https://kuaixun.eastmoney.com/")
-    time.sleep(600)
+    time.sleep(1200)
 spider.Quit()
 print("全部结束")
  

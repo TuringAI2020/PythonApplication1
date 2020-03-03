@@ -51,7 +51,7 @@ class ChromeSpider:
             self.url = url
             self.args=args
         except BaseException as e:
-            print("$s" % e)
+            print("$s"%e)
             self.url = None
             #self.chrome.quit();
         finally:

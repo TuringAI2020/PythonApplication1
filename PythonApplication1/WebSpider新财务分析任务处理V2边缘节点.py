@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import random
 #from selenium import webdriver
 #from selenium.webdriver.support.select import Select
 #from selenium.webdriver.chrome.options import Options
@@ -8,6 +9,11 @@ from ChromeSpider import ChromeSpider
 from CONVERTOR import CONVERT
 from CHECKER import CHECKER
 spider = ChromeSpider() 
+
+def GetCallback(url,args,pageSource):
+    print("文档长度 %s"%len(pageSource))
+    time.sleep(random.uniform(3,5))
+    return True
 
 def CreateEmptyItem(table):
     rows = table["body"]
@@ -52,8 +58,8 @@ def FillItemList(table):
 
 def ProcWebData():
     taskId="Task0"
-    #serverUrl="http://122.51.159.248/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
-    serverUrl="http://127.0.0.1:80/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
+    serverUrl="http://122.51.159.248/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
+    #serverUrl="http://127.0.0.1:80/YunStock2Service?keyName=CWFX&taskId=%s"%taskId
     while True:
         try:
             res = requests.get(serverUrl)
@@ -66,7 +72,7 @@ def ProcWebData():
                     code=data["Code"]
                     url=data["Url"]
                     resArr=[]
-                    jsonStr = spider.LoadWeb(url,"财务分析").GetDataFromWeb() 
+                    jsonStr = spider.LoadWeb(url,"财务分析",GetCallback).GetDataFromWeb() 
                     jsonData=json.loads(jsonStr) 
                     财务主要指标 = jsonData["Tables"][0]
                     财务主要指标 = FillItemList(财务主要指标)

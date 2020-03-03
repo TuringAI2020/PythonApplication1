@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider新财务分析任务处理V2边缘节点.py</StartupFile>
+    <StartupFile>WebSpider北向成交明细任务创建V3边缘节点.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="WebSpider北向成交明细任务创建V3边缘节点.py" />
     <Compile Include="WebSpider新财务分析任务生成V3边缘节点.py" />
     <Compile Include="WebSpider资金流向任务生成V3边缘节点.py" />
     <Compile Include="WebSpider融资融券任务生成V3边缘节点.py" />
@@ -37,7 +38,7 @@
     <Compile Include="WebSpider资金流向任务处理V2边缘节点.py" />
     <Compile Include="WebSpider融资融券任务处理V2边缘节点.py" />
     <Compile Include="老代码2\WebSpider北向成交明细任务生成V2增量.py" />
-    <Compile Include="老代码2\WebSpider北向成交明细任务处理V2边缘节点.py" />
+    <Compile Include="WebSpider北向成交明细任务处理V2边缘节点.py" />
     <Compile Include="老代码2\WebSpider北向持股明细任务处理V2边缘节点.py" />
     <Compile Include="老代码2\WebSpider北向持股明细任务生成V2增量.py" />
     <Compile Include="老代码2\WebSpider自动作业线上.py" />
