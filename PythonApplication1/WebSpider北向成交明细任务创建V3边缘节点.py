@@ -10,7 +10,7 @@ import requests
 from CHECKER import CHECKER 
 from urllib import parse
   
-def 北向持股统计任务创建(): 
+def 北向成交明细任务创建(): 
     serverUrl="http://122.51.159.248/YunStockTaskService?method=CreateTask北向成交明细"
     #serverUrl="http://127.0.0.1:80/YunStockTaskService?method=CreateTask北向成交明细"
     post_data={"method":"CreateTask北向成交明细",  "jsonReq": json.dumps({},ensure_ascii=False),"jsonRes": json.dumps({},ensure_ascii=False)}
@@ -20,4 +20,4 @@ def 北向持股统计任务创建():
 
 
      
-北向持股统计任务创建() 
+北向成交明细任务创建() 

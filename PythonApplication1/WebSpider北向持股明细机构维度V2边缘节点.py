@@ -47,7 +47,7 @@ def AddToArray(jgCode,jgName,targetArr):
 
  
 def ProcWebData():
-    taskId = "20200217"#Stock:Task:BXCGMXURL:20200221
+    taskId = "20200306"#Stock:Task:BXCGMXURL:20200221
     serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     while True:
