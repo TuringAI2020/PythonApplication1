@@ -4,7 +4,7 @@ from tencentcloud.common.profile.http_profile import HttpProfile
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException 
 from tencentcloud.nlp.v20190408 import nlp_client, models 
 try: 
-    cred = credential.Credential("AKIDd3KTQBKyE2teIkGar13oQwLcq24wctXC", "R3gAVglzFC51wkQwPuNhrpgBYjYYcbTX") 
+    cred = credential.Credential("qqq", "xxx") 
     httpProfile = HttpProfile()
     httpProfile.endpoint = "nlp.tencentcloudapi.com"
 
