@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import datetime
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
@@ -47,10 +48,11 @@ def AddToArray(jgCode,jgName,targetArr):
 
  
 def ProcWebData():
-    taskId = "20200306"#Stock:Task:BXCGMXURL:20200221
-    serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
-    #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
     while True:
+        currentDay = datetime.datetime.now()
+        taskId = CONVERT.StrToInt(current.strftime("%Y%m%d"))-1
+        serverUrl="http://122.51.159.248/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
+        #serverUrl = "http://127.0.0.1:80/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         try:
             res = requests.get(serverUrl)
             print("接收 %s \r\n --------\r\n" % res.text)

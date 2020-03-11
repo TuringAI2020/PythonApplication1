@@ -21,8 +21,8 @@ chrome.implicitly_wait(10)
  
  
 def ProcWebData(name,url):
-    serverUrl="http://122.51.159.248/YunStock2Service"
-    #serverUrl = "http://127.0.0.1:80/YunStock2Service" 
+    #serverUrl="http://122.51.159.248/YunStock2Service"
+    serverUrl = "http://127.0.0.1:80/YunStock2Service" 
     try: 
         #url="https://kuaixun.eastmoney.com/"
         #url="https://kuaixun.eastmoney.com/qqyh.html"
@@ -70,7 +70,7 @@ while True:
     ProcWebData("上市公司","https://kuaixun.eastmoney.com/ssgs.html")
     ProcWebData("焦点","https://kuaixun.eastmoney.com/yw.html")
     ProcWebData("滚动","https://kuaixun.eastmoney.com/")
-    time.sleep(1200)
+    time.sleep(1800)
 spider.Quit()
 print("全部结束")
  
