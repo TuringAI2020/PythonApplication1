@@ -113,7 +113,6 @@ def ProcWebData():
             print(" 异常 %s " % e)
             time.sleep(20)
     pass
-ProcWebData()
-spider.Quit()
+ProcWebData() 
 print("全部结束")
  
