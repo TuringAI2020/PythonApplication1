@@ -31,6 +31,7 @@
     </Compile>
     <Compile Include="Test.py" />
     <Compile Include="WebSpider基础数据作业.py" />
+    <Compile Include="WebSpiderUpdateAllConception.py" />
     <Compile Include="老代码3\WebSpider股票代码更新 - Copy.py" />
     <Compile Include="WebSpider自动作业.py" />
     <Compile Include="老代码3\WebSpider北向成交明细任务创建V3边缘节点.py" />
