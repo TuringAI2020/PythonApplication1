@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider基础数据作业.py</StartupFile>
+    <StartupFile>AI_T_KeywordsExtractionClient.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,26 +26,21 @@
     <Compile Include="AI_T_KeywordsExtraction.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Test.py" />
-    <Compile Include="WebSpider基础数据作业.py" />
-    <Compile Include="老代码3\WebSpider股票代码更新 - Copy.py" />
     <Compile Include="WebSpider自动作业.py" />
-    <Compile Include="老代码3\WebSpider北向成交明细任务创建V3边缘节点.py" />
-    <Compile Include="老代码3\WebSpider新财务分析任务生成V3边缘节点.py" />
-    <Compile Include="老代码3\WebSpider资金流向任务生成V3边缘节点.py" />
-    <Compile Include="老代码3\WebSpider融资融券任务生成V3边缘节点.py" />
+    <Compile Include="WebSpider北向成交明细任务创建V3边缘节点.py" />
+    <Compile Include="WebSpider新财务分析任务生成V3边缘节点.py" />
+    <Compile Include="WebSpider资金流向任务生成V3边缘节点.py" />
+    <Compile Include="WebSpider融资融券任务生成V3边缘节点.py" />
     <Compile Include="老代码2\SyncNotice.py" />
     <Compile Include="老代码2\WebSpiderTest.py" />
     <Compile Include="WebSpider东方财富滚动新闻V3边缘节点.py" />
     <Compile Include="WebSpider北向持股明细机构维度V2边缘节点.py" />
     <Compile Include="WebSpider北向持股统计任务处理V3边缘节点.py" />
-    <Compile Include="老代码3\WebSpider北向持股统计任务创建V3边缘节点.py" />
+    <Compile Include="WebSpider北向持股统计任务创建V3边缘节点.py" />
     <Compile Include="WebSpider所有机构更新V3边缘节点.py" />
     <Compile Include="WebSpider新财务分析任务处理V2边缘节点.py" />
-    <Compile Include="WebSpiderUpdateBXCode.py" />
+    <Compile Include="WebSpider北向股票代码更新V2边缘节点.py" />
     <Compile Include="WebSpider资金流向任务处理V2边缘节点.py" />
     <Compile Include="WebSpider融资融券任务处理V2边缘节点.py" />
     <Compile Include="老代码2\WebSpider北向成交明细任务生成V2增量.py" />
@@ -109,7 +104,7 @@
     <Compile Include="老代码\WebSpider新财务分析更新.py" />
     <Compile Include="WebSpider核心题材更新.py" />
     <Compile Include="WebSpider概念更新.py" />
-    <Compile Include="WebSpiderUpdateALLCode.py" />
+    <Compile Include="WebSpider股票代码更新.py" />
     <Compile Include="老代码\WebSpider06.py" />
     <Compile Include="老代码\PythonApplication1.py" />
     <Compile Include="老代码\HtmlParse.py" />
@@ -118,7 +113,6 @@
     <InterpreterReference Include="Global|PythonCore|3.7" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="老代码3\" />
     <Folder Include="老代码2\" />
     <Folder Include="老代码\" />
   </ItemGroup>
