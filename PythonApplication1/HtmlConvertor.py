@@ -12,6 +12,7 @@ class HtmlConvertor:
     def GetInst():
         return HtmlConvertor()
         pass
+    
     def __FindLinks(self,links):
         arr=[]
         for link in links:
@@ -33,6 +34,7 @@ class HtmlConvertor:
             pass   
         return arr 
         pass
+
     def __FindTables(self,tables):
         arr=[]
         tableCount= len(tables)
@@ -61,6 +63,7 @@ class HtmlConvertor:
             pass
         return arr   
         pass
+
     def __FindArticle(self,selector="p"):
         pArr=self.__soup.select("p")
         parentRef={}
@@ -80,15 +83,34 @@ class HtmlConvertor:
 
         article=""
         if -1!=selectIndex:
-            container=pArr[selectIndex].parent
-            article=container.text 
+            container=pArr[selectIndex].parent 
+            arr=[]
+            for content in container.contents:
+                if False == ("script"==content.name or None == content.name):
+                    arr.append("%s"%content.text.strip())
+            article="\r\n".join(arr)
         return article   
         pass
-    def __FindSection(self,selector):
 
+    def FindSection(self,selector):
+        if None != self.__pageSource:
+            items = self.__soup.select(selector)
+            arr=[]
+            for item in items:
+                 arr.append({"Text":item.text.replace(u'\xa0', u' ')})
+            return arr
         pass      
+    
+    def FindSectionOne(self,selector):
+        if None != self.__pageSource:
+            sel = self.__soup.select_one(selector)
+            item = {"Text":sel.text.replace(u'\xa0', u' ')}
+            return item
+        pass      
+
     def LoadFromWeb(self,url):
         pass
+
     def LoadFromString(self,html):
         if(type(html) == type("")):
             self.__pageSource=html
@@ -100,6 +122,7 @@ class HtmlConvertor:
         self.__uri=filePath
         return self
         pass
+
     def ConvertToJson(self):
         self.__soup = BeautifulSoup(self.__pageSource,features="html5lib")
         if None != self.__soup.title:
@@ -119,6 +142,4 @@ class HtmlConvertor:
         else:
             return None
     pass
-     
-#res = HtmlConvertor.GetInst().LoadFromFile(r"D:\007\t7.txt").ConvertToJson()
-#print(res)
+      

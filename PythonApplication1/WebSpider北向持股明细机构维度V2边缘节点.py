@@ -51,7 +51,7 @@ def ProcWebData():
     while True:
         currentDay = datetime.datetime.now()
         #taskId = CONVERT.StrToInt(currentDay.strftime("%Y%m%d"))-1
-        taskId = 20200313
+        taskId = 20200326
         serverUrl="http://122.51.159.248:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         #serverUrl = "http://127.0.0.1:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         try:
@@ -80,8 +80,8 @@ def ProcWebData():
                         chrome.switch_to_window(chrome.window_handles[0]) 
                         linkBtn = chrome.find_element_by_link_text("下一页") 
                         clsVal = linkBtn.get_attribute('class')
-                        closebtn=chrome.find_element_by_id("intellcontclose")
-                        closebtn.click()
+                        #closebtn=chrome.find_element_by_id("intellcontclose")
+                        #closebtn.click()
                         while False == CHECKER.Contains(clsVal,"nolink"):  
                             chrome.switch_to_window(chrome.window_handles[0]) 
                             linkBtn = chrome.find_element_by_link_text("下一页")
