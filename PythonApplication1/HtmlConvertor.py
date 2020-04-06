@@ -104,7 +104,9 @@ class HtmlConvertor:
     def FindSectionOne(self,selector):
         if None != self.__pageSource:
             sel = self.__soup.select_one(selector)
-            item = {"Text":sel.text.replace(u'\xa0', u' ')}
+            item = {"Text":""}
+            if None != sel:
+                item = {"Text":sel.text.replace(u'\xa0', u' ')}
             return item
         pass      
 
