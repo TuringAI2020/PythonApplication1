@@ -55,7 +55,15 @@ class HtmlConvertor:
                 cellArr=[]
                 for td in tdArr:
                     text="".join(td.text.split())
-                    cellArr.append(text)
+                    title=""
+                    #td.select("[title]")[0]["title"]
+                    if 0<len(td.select("[title]")):
+                        title=td.select("[title]")[0]["title"] 
+
+                    if len(text)<len(title):
+                        cellArr.append(title)
+                    else:
+                        cellArr.append(text)
                     pass
                 data["body"].append(cellArr)
                 pass

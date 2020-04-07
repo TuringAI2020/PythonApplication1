@@ -51,7 +51,7 @@ def ProcWebData():
     while True:
         currentDay = datetime.datetime.now()
         #taskId = CONVERT.StrToInt(currentDay.strftime("%Y%m%d"))-1
-        taskId = 20200403
+        taskId = 20200408
         serverUrl="http://122.51.159.248:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         #serverUrl = "http://127.0.0.1:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         try:
