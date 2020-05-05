@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider中国政府网.py</StartupFile>
+    <StartupFile>WebSpider大盘资金流向任务处理V3边缘节点.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,6 +30,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Test.py" />
+    <Compile Include="WebSpider国家队持股个股明细任务处理V3边缘节点.py" />
+    <Compile Include="WebSpider大盘资金流向任务处理V3边缘节点.py" />
+    <Compile Include="WebSpider国家队持股概况任务处理V3边缘节点.py" />
     <Compile Include="WebSpider机构调研列表V2边缘节点.py" />
     <Compile Include="WebSpider基础数据作业.py" />
     <Compile Include="WebSpiderUpdateAllConception.py" />
@@ -124,6 +127,17 @@
     <Folder Include="老代码3\" />
     <Folder Include="老代码2\" />
     <Folder Include="老代码\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.8</Version>
+      <Description>env (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -37,9 +37,9 @@ def callback(input,args):
          pass
 
 chrome_opt = Options()      # 创建参数设置对象.
-chrome_opt.add_argument('--headless')   # 无界面化.
-chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
-chrome_opt.add_argument('--window-size=1920,1080')   # 设置窗口大小, 窗口大小会有影响.
+#chrome_opt.add_argument('--headless')   # 无界面化.
+#chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
+#chrome_opt.add_argument('--window-size=1920,1080')   # 设置窗口大小, 窗口大小会有影响.
 chrome = webdriver.Chrome( chrome_options=chrome_opt) 
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
  
@@ -75,9 +75,10 @@ def DownloadAllCode():
             print("%d 页数据未能加载"%pageIndex)
             time.sleep(20)
             pass
-        pageIndex+=1
+        pageIndex+=1 
+        linkBtn = chrome.find_element_by_link_text("下一页")
         linkBtn.click()
         time.sleep(random.uniform(2,4))
     chrome.quit()
      
- 
+DownloadAllCode()
