@@ -28,6 +28,7 @@ chrome = webdriver.Chrome( chrome_options=chrome_opt)
 timeTag = time.strftime("%Y-%m-%d", time.localtime())
  
 def DownloadAllCode(): 
+    taskId = "Task0"
     #serverUrl="http://122.51.159.248:5000/YunStock2Service?keyName=GJDCGGGMX&taskId=%s" % taskId
     serverUrl = "http://127.0.0.1:5000/YunStock2Service?keyName=GJDCGGGMX&taskId=%s" % taskId
 
@@ -66,8 +67,9 @@ def DownloadAllCode():
                         }
                     postArr.append(item) 
             post_data={"keyName":"GJDCGGGMX",  "jsonReq": json.dumps({},ensure_ascii=False),"jsonRes": json.dumps(postArr,ensure_ascii=False)}
-            res2 = requests.post(serverUrl,data=post_data)
-            print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
+            print(post_data)
+            #res2 = requests.post(serverUrl,data=post_data)
+            #print("POST %s \r\n RES %s \r\n --------- \r\n"%(post_data,res2.text))
         else:
             print("%d 页数据未能加载"%pageIndex)
             time.sleep(20)

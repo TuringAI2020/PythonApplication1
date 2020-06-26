@@ -6,7 +6,7 @@ import json
 import time
 from selenium.webdriver.chrome.options import Options
 
-class ChromeSpider:
+class ChromeSpider2:
     chrome = None
     html = None
     url = None
@@ -18,9 +18,9 @@ class ChromeSpider:
 
     def __init__(self):
         chrome_opt = Options()      # 创建参数设置对象.
-        chrome_opt.add_argument('--headless')   # 无界面化.
-        chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
-        chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
+        #chrome_opt.add_argument('--headless')   # 无界面化.
+        #chrome_opt.add_argument('--disable-gpu')    # 配合上面的无界面化.
+        #chrome_opt.add_argument('--window-size=400,1080')   # 设置窗口大小, 窗口大小会有影响.
         self.chrome = webdriver.Chrome(chrome_options=chrome_opt)     # 创建Chrome对象
     def LoadWeb(self,url,args=None,callback=None):
         try:

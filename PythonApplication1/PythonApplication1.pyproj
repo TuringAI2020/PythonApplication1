@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider大盘资金流向任务处理V3边缘节点.py</StartupFile>
+    <StartupFile>WebSpiderExcel下载.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,13 +26,17 @@
     <Compile Include="AI_T_KeywordsExtraction.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChromeSpider2.py" />
     <Compile Include="Config.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Test.py" />
+    <Compile Include="WebSpiderPandas01.py" />
     <Compile Include="WebSpider国家队持股个股明细任务处理V3边缘节点.py" />
     <Compile Include="WebSpider大盘资金流向任务处理V3边缘节点.py" />
     <Compile Include="WebSpider国家队持股概况任务处理V3边缘节点.py" />
+    <Compile Include="WebSpiderExcel下载.py" />
+    <Compile Include="WebSpider文章收藏V2边缘节点.py" />
     <Compile Include="WebSpider机构调研列表V2边缘节点.py" />
     <Compile Include="WebSpider基础数据作业.py" />
     <Compile Include="WebSpiderUpdateAllConception.py" />
