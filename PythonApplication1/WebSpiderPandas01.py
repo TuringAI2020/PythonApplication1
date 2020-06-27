@@ -1,4 +1,4 @@
-`import requests
+import requests
 import json
 import time  
 from CHECKER import  CHECKER
@@ -8,78 +8,50 @@ import datetime
 import io
 import random
 from pathlib import Path 
-
-def DownloadWebData():
-    res0 = requests.get("http://122.51.159.248:5000/YunStockService/List?keyName=ALLCODE")
-    print(res0.text)
-    allCode = json.loads(res0.text)["data"]
-    count = len(allCode)
-    index = 0
-    while index < count:
-        code = allCode[index]["code"]
-        try:
-            #res1 =
-            #requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/%s/ctrl/all.phtml"
-            #% code) #资产负债表
-            #time.sleep(random.uniform(5,10))
-            #res2 =
-            #requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/%s/ctrl/all.phtml"
-            #% code) #利润表
-            #time.sleep(random.uniform(5,10))
-            #res3 =
-            #requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/%s/ctrl/all.phtml"
-            #% code) #现金流量表
-            #time.sleep(random.uniform(5,10))
-            path1 = r"%s\资产负债表_%s.xls" % (r"D:\DataSourceStock\资产负债表",code)
-            filePath1 = Path(path1)
-            e1 = filePath1.exists()
-
-            path2 = r"%s\利润表_%s.xls" % (r"D:\DataSourceStock\利润表",code)
-            filePath2 = Path(path2)
-            e2 = filePath2.exists()
-
-            path3 = r"%s\现金流量表_%s.xls" % (r"D:\DataSourceStock\现金流量表",code)
-            filePath3 = Path(path3)
-            e3 = filePath3.exists()
-
-            if True != e1:
-                res1 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #资产负债表
-                time.sleep(random.uniform(3,5))
-                print("正在下载资产负债表 %s-%s-%s" % (count,index,code))
-                f1 = open("%s\资产负债表_%s.xls" %(r"D:\DataSourceStock\资产负债表",code),"wb")
-                f1.write(res1.content)
-                f1.close()
-            else:
-                print("资产负债表已存在 %s-%s-%s" % (count,index,code))
-
-            if True != e2:
-                res2 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #利润表
-                time.sleep(random.uniform(3,5))
-                print("正在下载利润表 %s-%s-%s" % (count,index,code))
-                f2 = open("%s\利润表_%s.xls" %(r"D:\DataSourceStock\利润表",code),"wb")
-                f2.write(res2.content)
-                f2.close()
-            else:
-                print("利润表已存在 %s-%s-%s" % (count,index,code))
-
-            if True != e3:
-                res3 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #现金流量表
-                time.sleep(random.uniform(3,5))
-                print("正在下载现金流量表 %s-%s-%s" % (count,index,code))
-                f3 = open("%s\现金流量表_%s.xls" %(r"D:\DataSourceStock\现金流量表",code),"wb")
-                f3.write(res3.content)
-                f3.close()
-            else:
-                print("现金流量表已存在 %s-%s-%s" % (count,index,code))
-                  
-            index+=1 
-            
-        except BaseException as ex:
-            print("%s-%s-%s 异常" % (count,index,code))
-            print(ex)
-            index-=1
+import  pandas  as pd
+def ReadExcel():
+    path = u"D:\DataSourceStock\利润表_000001.csv"
+    df1 = pd.read_csv(path,sep='\t')  
+    #data=df1.head(100)#默认读取前5行的数据
+    #print("获取到所有的值:\n{0}".format(data))#格式化输出
+    dict={}
+    for col in df1.columns:
+        #print(col)
+        series = df1[col]
+        
+        if(series.name == "报表日期"):
+            index=0
+            dict[index]=series.name
+            index=1
+            SQL=" CREATE TABLE [利润表] ([Code] NCHAR(6) NOT NULL \r\n,报表日期Tag INT NOT NULL"
+            for row in series:
+                arr=row.split('、')
+                arr=arr[len(arr)-1].split(':')
+                arr=arr[len(arr)-1].split('：')
+                row=arr[len(arr)-1]
+                dict[index]=row
+                if row!="单位":
+                    SQL="%s,[%s] [numeric](18, 2)  NULL \r\n"%(SQL,row)
+                index+=1
+            SQL="%s)"%SQL
+            print(SQL)
+            print("\r\n\r\n\r\n\r\n")
             pass
+        else:
+            item={}
+            index=0
+            item[dict[index]]=series.name
+            index=1
+            for row in series: 
+                item[dict[index]]=row
+                index+=1
+            print(item)
+            print("\r\n\r\n\r\n\r\n")
+            pass
+        #print(series)
+        #print(series[1])
+    #print(df1["19961231"])
     pass
-DownloadWebData()
+ReadExcel()
 print("全部结束")
  

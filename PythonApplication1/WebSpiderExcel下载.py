@@ -46,7 +46,7 @@ def DownloadWebData():
                 res1 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #资产负债表
                 time.sleep(random.uniform(3,5))
                 print("正在下载资产负债表 %s-%s-%s" % (count,index,code))
-                f1 = open("%s\资产负债表_%s.xls" %(r"D:\DataSourceStock\资产负债表",code),"wb")
+                f1 = open("%s\资产负债表_%s.xls" %(r"D:\DataSourceStock\资产负债表",code),"wb" , encoding='utf-8')
                 f1.write(res1.content)
                 f1.close()
             else:
@@ -56,7 +56,7 @@ def DownloadWebData():
                 res2 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #利润表
                 time.sleep(random.uniform(3,5))
                 print("正在下载利润表 %s-%s-%s" % (count,index,code))
-                f2 = open("%s\利润表_%s.xls" %(r"D:\DataSourceStock\利润表",code),"wb")
+                f2 = open("%s\利润表_%s.xls" %(r"D:\DataSourceStock\利润表",code),"wb", encoding='utf-8')
                 f2.write(res2.content)
                 f2.close()
             else:
@@ -66,7 +66,7 @@ def DownloadWebData():
                 res3 =  requests.get("http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/%s/ctrl/all.phtml"% code) #现金流量表
                 time.sleep(random.uniform(3,5))
                 print("正在下载现金流量表 %s-%s-%s" % (count,index,code))
-                f3 = open("%s\现金流量表_%s.xls" %(r"D:\DataSourceStock\现金流量表",code),"wb")
+                f3 = open("%s\现金流量表_%s.xls" %(r"D:\DataSourceStock\现金流量表",code),"wb", encoding='utf-8')
                 f3.write(res3.content)
                 f3.close()
             else:
