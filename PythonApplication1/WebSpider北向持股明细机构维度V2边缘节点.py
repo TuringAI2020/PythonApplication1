@@ -46,18 +46,37 @@ def AddToArray(jgCode,jgName,targetArr):
             targetArr.append(item)
     return targetArr
 
+def GetTaskList():
+    serverUrl="http://122.51.159.248:5000/YunStockTaskService/"
+    post_data={"method":"Get北向成交明细TaskList"}#"method=".encode("utf-8")
+    resStr = requests.post(serverUrl,data=post_data)
+    res = json.loads(resStr.text)
+    return res["data"]
+    pass
+
+
  
 def ProcWebData():
-    while True:
+    taskList = GetTaskList()
+    index=0
+    taskListCount=len(taskList)
+    while index<taskListCount:
         currentDay = datetime.datetime.now()
         #taskId = CONVERT.StrToInt(currentDay.strftime("%Y%m%d"))-1
-        taskId = 20200518
+        taskId = taskList[index]
         serverUrl="http://122.51.159.248:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         #serverUrl = "http://127.0.0.1:5000/YunStock2Service?keyName=BXCGMXURL&taskId=%s"%taskId
         try:
             res = requests.get(serverUrl)
             print("接收 %s \r\n --------\r\n" % res.text)
+
             res = json.loads(res.text)
+            
+            if res["success"] ==False:
+                index+=1
+                print("准备下载下一页 %s "%index)
+            
+            
             if(res["success"] == True):
                 data = res["data"]
                 if 10 <= len(data):
@@ -97,7 +116,7 @@ def ProcWebData():
                             while True != CHECKER.Contains(style,"none") and 0<subCount:
                                 print("还在加载中...%s %s"%(pageIndex,subCount))
                                 subCount-=1
-                                time.sleep(random.uniform(3,5))
+                                time.sleep(random.uniform(4,7))
                                 style = chrome.find_element_by_class_name("content").find_element_by_tag_name("div").get_attribute("style")
                                 
                             linkBtn = chrome.find_element_by_link_text("下一页")
@@ -115,5 +134,6 @@ def ProcWebData():
             time.sleep(20)
     pass
 ProcWebData() 
+# GetTaskList()
 print("全部结束")
  
