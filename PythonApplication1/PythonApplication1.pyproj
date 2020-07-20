@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpider北向持股明细机构维度V2边缘节点.py</StartupFile>
+    <StartupFile>WebSpiderStockIndex.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -32,6 +32,7 @@
     </Compile>
     <Compile Include="Test.py" />
     <Compile Include="WebSpiderPandas01.py" />
+    <Compile Include="WebSpiderStockIndex.py" />
     <Compile Include="WebSpider国家队持股个股明细任务处理V3边缘节点.py" />
     <Compile Include="WebSpider大盘资金流向任务处理V3边缘节点.py" />
     <Compile Include="WebSpider国家队持股概况任务处理V3边缘节点.py" />
@@ -41,6 +42,7 @@
     <Compile Include="WebSpider基础数据作业.py" />
     <Compile Include="WebSpiderUpdateAllConception.py" />
     <Compile Include="WebSpider中国政府网.py" />
+    <Compile Include="WebSpider核心题材更新V3.py" />
     <Compile Include="老代码3\WebSpider股票代码更新 - Copy.py" />
     <Compile Include="WebSpider自动作业.py" />
     <Compile Include="老代码3\WebSpider北向成交明细任务创建V3边缘节点.py" />
