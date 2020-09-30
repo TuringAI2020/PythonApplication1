@@ -52,7 +52,7 @@ def Run():
         GetStockIndexList()
         print("股票指数更新时间 %s"%now)
         if now.hour>=9 and now.hour<=15 and today.weekday()<5:
-            time.sleep(5)
+            time.sleep(10)
         else:
             time.sleep(300)
 

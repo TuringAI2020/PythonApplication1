@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c4753aa1-b143-4f00-9136-9134a24d1f18</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>WebSpiderStockIndex.py</StartupFile>
+    <StartupFile>WebSpider新财务分析任务处理V2边缘节点.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,6 +31,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Test.py" />
+    <Compile Include="WebSpiderPandas02.py" />
     <Compile Include="WebSpiderPandas01.py" />
     <Compile Include="WebSpiderStockIndex.py" />
     <Compile Include="WebSpider国家队持股个股明细任务处理V3边缘节点.py" />
